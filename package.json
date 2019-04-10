@@ -1,0 +1,8 @@
+{
+  "name": "Carousel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Zillordo/Carousel.git",
+  "author": "Zillordo <konecnyallan@gmail.com>",
+  "license": "MIT"
+}
