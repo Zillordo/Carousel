@@ -35,7 +35,7 @@ const RootQuery = new GraphQLObjectType({
         deleteTitle: {
             type: TitleType,
             args: {
-                id: { type: GraphQLString }
+                id: { type: new GraphQLNonNull(GraphQLString) }
             },
             resolve(parentValue, args) {
                 //deleting data based on id using axious
@@ -57,6 +57,37 @@ const RootQuery = new GraphQLObjectType({
     },
 });
 
+//Mutations
+const mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addTitle: {
+            type: TitleType,
+            args: {
+                subHeader: { type: new GraphQLNonNull(GraphQLString) },
+                heading: { type: new GraphQLNonNull(GraphQLString) },
+                positive: { type: new GraphQLNonNull(GraphQLBoolean) },
+                background: { type: new GraphQLNonNull(GraphQLString) },
+                btnText: { type: GraphQLString },
+                btnLink: { type: GraphQLString }
+            },
+            resolve(parentValue, args) {
+                return axious.post(endPoint, {
+                    subHeader: args.subHeader,
+                    heading: args.heading,
+                    positive: args.positive,
+                    background: args.background,
+                    btnText: args.btnText,
+                    btnLink: args.btnLink
+                })
+                    .then(res => res.data)
+                    .catch(err => console.log(err));
+            }
+        }
+    }
+});
+
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation
 });

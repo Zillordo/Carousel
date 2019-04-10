@@ -1,13 +1,22 @@
 {
   "titles": [
     {
-      "id": "2",
-      "subHeader": "Test2",
-      "heading": "Welcome test",
-      "positive": true,
+      "subHeader": "test",
+      "heading": "test",
+      "positive": false,
       "background": "picture",
-      "btnText": "Buy",
-      "btnLink": "https://www.google.com/"
+      "btnText": "test",
+      "btnLink": "http://www.google.com",
+      "id": "qdvLXte"
+    },
+    {
+      "subHeader": "test",
+      "heading": "test",
+      "positive": false,
+      "background": "picture",
+      "btnText": "test",
+      "btnLink": "http://www.google.com",
+      "id": "pojhRtJ"
     }
   ]
 }
