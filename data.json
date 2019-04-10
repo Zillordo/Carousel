@@ -1,0 +1,13 @@
+{
+  "titles": [
+    {
+      "id": "2",
+      "subHeader": "Test2",
+      "heading": "Welcome test",
+      "positive": true,
+      "background": "picture",
+      "btnText": "Buy",
+      "btnLink": "https://www.google.com/"
+    }
+  ]
+}
