@@ -61,6 +61,7 @@ const RootQuery = new GraphQLObjectType({
 const mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
+        //mutation for adding new title
         addTitle: {
             type: TitleType,
             args: {
@@ -80,6 +81,24 @@ const mutation = new GraphQLObjectType({
                     btnText: args.btnText,
                     btnLink: args.btnLink
                 })
+                    .then(res => res.data)
+                    .catch(err => console.log(err));
+            }
+        },
+        //mutation for editing titles
+        editTitle: {
+            type: TitleType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString) },
+                subHeader: { type: GraphQLString },
+                heading: { type: GraphQLString },
+                positive: { type: GraphQLBoolean },
+                background: { type: GraphQLString },
+                btnText: { type: GraphQLString },
+                btnLink: { type: GraphQLString }
+            },
+            resolve(parentValue, args) {
+                return axious.patch(`${endPoint}/${args.id}`, args)
                     .then(res => res.data)
                     .catch(err => console.log(err));
             }
