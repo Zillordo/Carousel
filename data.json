@@ -17,6 +17,15 @@
       "btnText": "test",
       "btnLink": "http://www.google.com",
       "id": "pojhRtJ"
+    },
+    {
+      "subHeader": "google",
+      "heading": "Visit our facebook",
+      "positive": true,
+      "background": "picture",
+      "btnText": "Click me",
+      "btnLink": "http://www.facebook.com",
+      "id": "nzcdWq7"
     }
   ]
 }

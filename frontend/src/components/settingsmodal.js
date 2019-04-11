@@ -2,20 +2,26 @@ import React, { useState } from 'react';
 import Reorder, { reorder } from 'react-reorder';
 
 
+
 const Tile = () => {
-    
-    const [tile, setTile] = useState(["tile1", "tile2", "tile3", "tile4"]);
+
+    const [tile, setTile] = useState(["Photo", "Nature", "Car"]);
 
 
     const order = (event, previusIndex, nextIndex) => {
         event.preventDefault();
-        setTile(()=>reorder(tile, previusIndex, nextIndex));
+        setTile(() => reorder(tile, previusIndex, nextIndex));
     }
 
     return (
         <React.Fragment>
             <Reorder reorderId="my-list" autoScroll={true} className="list" onReorder={order}>
-                {tile.map(item=><li className="tile" key={item}>{item}</li>)}
+                {tile.map(item =>
+                    <div className="tile" key={item}>
+                        <div className="dnd"></div>
+                        {item}
+                    </div>
+                )}
             </Reorder>
         </React.Fragment>
     )
@@ -36,8 +42,12 @@ const Settings = props => {
                     </div>
                     <div className="header--animation">
                         <p>Animations</p>
-                        <select></select>
-                        <select></select>
+                        <select>
+                            <option>Frtine wheel</option>
+                        </select>
+                        <select>
+                        <option>Auto 2 sec</option>
+                        </select>
                     </div>
                 </div>
             </div>
