@@ -1,15 +1,22 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import Reorder, { reorder } from 'react-reorder';
 
 
 const Tile = () => {
+    
+    const [tile, setTile] = useState(["tile1", "tile2", "tile3", "tile4"]);
 
+
+    const order = (event, previusIndex, nextIndex) => {
+        event.preventDefault();
+        setTile(()=>reorder(tile, previusIndex, nextIndex));
+    }
 
     return (
         <React.Fragment>
-            <ul id="item-list" className="list">
-                <ul className="tile">Tile1</ul>
-            </ul>
+            <Reorder reorderId="my-list" autoScroll={true} className="list" onReorder={order}>
+                {tile.map(item=><li className="tile" key={item}>{item}</li>)}
+            </Reorder>
         </React.Fragment>
     )
 }
