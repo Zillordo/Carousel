@@ -1,1 +1,213 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.settings {
+  margin: auto;
+  margin-top: 50px;
+  position: relative;
+  width: 850px;
+  height: auto;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.05);
+}
+
+.settings--canclebtn {
+  position: relative;
+  top: -18px;
+  right: -18px;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25);
+  border: 0;
+  float: right;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+}
+
+.settings--header {
+  padding: 20px;
+  height: 185px;
+  background-color: #ffffff;
+}
+
+.settings--header h1 {
+  font-family: "Montserrat", sans-serif;
+}
+
+.settings--header .header--options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+}
+
+.settings--header .header--options p {
+  font-family: "Montserrat", sans-serif;
+}
+
+.settings--header .header--options .header--sizes button {
+  border: 1px solid #dadada;
+  width: 80px;
+  height: 40px;
+  background-color: #ffffff;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+}
+
+.settings--header .header--options .header--sizes button:hover {
+  background-color: #5c0099;
+  color: #ffffff;
+}
+
+.settings--header .header--options .header--animation {
+  margin-left: 40px;
+}
+
+.settings--header .header--options .header--animation select {
+  margin-right: 15px;
+  height: 40px;
+  width: 216px;
+  border-color: #dadada;
+  outline: none;
+}
+
+.settings--body {
+  min-height: 280px;
+  border-top: 1px solid #dadada;
+  background-color: #ffffff;
+  margin: 15px;
+  margin-bottom: 0;
+  margin-top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+.settings--body .body-add {
+  height: 60px;
+  line-height: 55px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+.settings--body .body--tiles {
+  border: 1px solid #dadada;
+  min-height: 200px;
+  display: -ms-grid;
+  display: grid;
+  margin-bottom: 20px;
+  -ms-grid-columns: 20% 50% 10% 20%;
+      grid-template-columns: 20% 50% 10% 20%;
+  -ms-grid-rows: 45px;
+      grid-template-rows: 45px;
+  grid-auto-flow: row;
+}
+
+.settings--body .body--tiles p {
+  background-color: #dadada;
+  height: 100%;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 4;
+  letter-spacing: 0.9px;
+  text-align: center;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.settings--footer {
+  width: 100%;
+  height: 75px;
+  background-color: #dadada;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.settings--footer button {
+  width: 140px;
+  height: 40px;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  background-color: #9700fd;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  margin: auto;
+  margin-left: 0;
+  margin-right: 24px;
+  font-family: "Montserrat", sans-serif;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+}
+
+.settings--footer button:hover {
+  background-color: #5c0099;
+}
+
+.list {
+  -ms-grid-column: 5;
+      grid-column-start: 5;
+  grid-column-end: 1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 50px;
+  list-style: none;
+}
+
+.tile {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 20% 50% 10% 20%;
+      grid-template-columns: 20% 50% 10% 20%;
+  border-bottom: 1px solid #dadada;
+  -ms-grid-column: 5;
+      grid-column-start: 5;
+  grid-column-end: 1;
+  height: 50px;
+  padding: 0;
+}
+
+.tile:hover {
+  cursor: move;
+}
+/*# sourceMappingURL=style.css.map */
