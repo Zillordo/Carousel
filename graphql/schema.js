@@ -10,11 +10,11 @@ const {
 
 
 //endpoint
-const endPoint = 'http://localhost:8080/titles';
+const endPoint = 'http://localhost:8080/tiles';
 
 //Title type
-const TitleType = new GraphQLObjectType({
-    name: 'Title',
+const TileType = new GraphQLObjectType({
+    name: 'Tile',
     fields: () => ({
         id: { type: GraphQLString },
         subHeader: { type: GraphQLString },
@@ -32,8 +32,8 @@ const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
         //deleting
-        deleteTitle: {
-            type: TitleType,
+        deleteTile: {
+            type: TileType,
             args: {
                 id: { type: new GraphQLNonNull(GraphQLString) }
             },
@@ -45,8 +45,8 @@ const RootQuery = new GraphQLObjectType({
             }
         },
         //retrieving
-        titles: {
-            type: new GraphQLList(TitleType),
+        tiles: {
+            type: new GraphQLList(TileType),
             resolve(parentValue, args) {
                 //retrieving data using axious
                 return axious.get(endPoint)
@@ -61,9 +61,9 @@ const RootQuery = new GraphQLObjectType({
 const mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
-        //mutation for adding new title
-        addTitle: {
-            type: TitleType,
+        //mutation for adding new tile
+        addTile: {
+            type: TileType,
             args: {
                 subHeader: { type: new GraphQLNonNull(GraphQLString) },
                 heading: { type: new GraphQLNonNull(GraphQLString) },
@@ -85,9 +85,9 @@ const mutation = new GraphQLObjectType({
                     .catch(err => console.log(err));
             }
         },
-        //mutation for editing titles
-        editTitle: {
-            type: TitleType,
+        //mutation for editing tiles
+        editTile: {
+            type: TileType,
             args: {
                 id: { type: new GraphQLNonNull(GraphQLString) },
                 subHeader: { type: GraphQLString },

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Reorder, { reorder } from 'react-reorder';
 
+import Tile from './tile';
 
-
-const Tile = () => {
+const Tiles = props => {
 
     const [tile, setTile] = useState(["Photo", "Nature", "Car"]);
+
 
 
     const order = (event, previusIndex, nextIndex) => {
@@ -15,11 +16,12 @@ const Tile = () => {
 
     return (
         <React.Fragment>
-            <Reorder reorderId="my-list" autoScroll={true} className="list" onReorder={order}>
+            <Reorder reorderId="my-list" autoScroll={true} className="list" onReorder={order} holdTime={150}>
                 {tile.map(item =>
-                    <div className="tile" key={item}>
-                        <div className="dnd"></div>
-                        {item}
+                    <div>
+                        <Tile
+                            subheader={item}
+                        />
                     </div>
                 )}
             </Reorder>
@@ -28,6 +30,7 @@ const Tile = () => {
 }
 
 const Settings = props => {
+
     return (
         <div className="settings">
             <button className="settings--canclebtn" onClick={props.toggle}>X</button>
@@ -46,7 +49,7 @@ const Settings = props => {
                             <option>Frtine wheel</option>
                         </select>
                         <select>
-                        <option>Auto 2 sec</option>
+                            <option>Auto 2 sec</option>
                         </select>
                     </div>
                 </div>
@@ -55,7 +58,7 @@ const Settings = props => {
                 <div className="body-add">Tiles</div>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
-                    <Tile />
+                    <Tiles />
                 </div>
             </div>
             <div className="settings--footer">

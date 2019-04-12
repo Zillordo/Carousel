@@ -1,5 +1,5 @@
 {
-  "titles": [
+  "tiles": [
     {
       "subHeader": "test",
       "heading": "edited heading",
@@ -26,6 +26,15 @@
       "btnText": "Click me",
       "btnLink": "http://www.facebook.com",
       "id": "nzcdWq7"
+    },
+    {
+      "subHeader": "Hello",
+      "heading": "Some text",
+      "positive": true,
+      "background": "picture",
+      "btnText": "Buy now",
+      "btnLink": "http://www.instagram.com",
+      "id": "12lsbAM"
     }
   ]
 }
