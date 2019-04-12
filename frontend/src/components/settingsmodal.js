@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider, Query } from 'react-apollo';
+import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 
@@ -15,12 +14,6 @@ const TILES_QUERY = gql`
   }
 }
 `;
-
-
-const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql'
-});
-
 
 
 const Tile = ({ subheader, heading, positive, ...props }) => {
@@ -48,38 +41,37 @@ const Tile = ({ subheader, heading, positive, ...props }) => {
     )
 }
 
+const RenderTiles = () => (
+    <Query query={TILES_QUERY}>
+        {
+            ({ loading, error, data }) => {
+                if (loading) return <h4>Loading</h4>
+                if (error) console.log(error)
+                console.log(data);
+
+                return (
+                    <Fragment>
+                        {
+                            data.tiles.map(tile => (
+                                <div className="list" key={tile.id}>
+                                    <Tile
+                                        subheader={tile.subHeader}
+                                        heading={tile.heading}
+                                        positive={tile.positive}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </Fragment>
+                )
+            }
+        }
+    </Query>
+);
+
 const Settings = ({ toggle }) => {
 
-    const Tiles = () => (
-        <Query query={TILES_QUERY}>
-            {
-                ({ loading, error, data }) => {
-                    if (loading) return <h4>Loading</h4>
-                    if (error) console.log(error)
-                    console.log(data);
-
-                    return (
-                        <Fragment>
-                            {
-                                data.tiles.map(tile => (
-                                    <div className="list" key={tile.id}>
-                                        <Tile
-                                            subheader={tile.subHeader}
-                                            heading={tile.heading}
-                                            positive={tile.positive}
-                                        />
-                                    </div>
-                                ))
-                            }
-                        </Fragment>
-                    )
-                }
-            }
-        </Query>
-    );
-
     return (
-        <ApolloProvider client={client}>
             <div className="settings">
                 <button className="settings--canclebtn" onClick={toggle}>X</button>
                 <div className="settings--header">
@@ -106,14 +98,13 @@ const Settings = ({ toggle }) => {
                     <div className="body-add">Tiles</div>
                     <div className="body--tiles">
                         <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
-                        <Tiles />
+                        <RenderTiles />
                     </div>
                 </div>
                 <div className="settings--footer">
                     <button>SAVE</button>
                 </div>
             </div>
-        </ApolloProvider>
     )
 }
 
