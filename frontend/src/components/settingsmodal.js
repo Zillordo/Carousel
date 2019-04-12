@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, createContext } from 'react';
 import Reorder, { reorder } from 'react-reorder';
 
-import Tile from './tile';
 
-const Tiles = props => {
+const Tile = ({subheader, ...props}) => {
+
+    const [slider, setSlider] = useState(true);
+
+
+    return (
+        <React.Fragment>
+            <div className="tile">
+                <div className="subheader">
+                    <div className="dnd"></div>
+                    <input type="text" value={subheader}/>
+                </div>
+                <div className="heading">
+                    <input type="text"></input>
+                </div>
+                <div className="positive">
+                    <button onClick={() => setSlider(!slider)} style={slider ? { backgroundColor: '#dadada' } : { backgroundColor: '#9700fd' }}>
+                        <div className="slider" style={slider ? { float: 'left' } : { float: 'right' }}></div>
+                    </button>
+                </div>
+            </div>
+        </React.Fragment>
+    )
+}
+
+const Tiles = () => {
 
     const [tile, setTile] = useState(["Photo", "Nature", "Car"]);
-
 
 
     const order = (event, previusIndex, nextIndex) => {
@@ -18,7 +41,7 @@ const Tiles = props => {
         <React.Fragment>
             <Reorder reorderId="my-list" autoScroll={true} className="list" onReorder={order} holdTime={150}>
                 {tile.map(item =>
-                    <div>
+                    <div key={item}>
                         <Tile
                             subheader={item}
                         />
@@ -29,11 +52,12 @@ const Tiles = props => {
     )
 }
 
-const Settings = props => {
+const Settings = ({ toggle }) => {
 
+    
     return (
         <div className="settings">
-            <button className="settings--canclebtn" onClick={props.toggle}>X</button>
+            <button className="settings--canclebtn" onClick={toggle}>X</button>
             <div className="settings--header">
                 <h1>Header Settings</h1>
                 <div className="header--options">
