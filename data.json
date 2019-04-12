@@ -2,15 +2,6 @@
   "tiles": [
     {
       "subHeader": "test",
-      "heading": "edited heading",
-      "positive": false,
-      "background": "picture",
-      "btnText": "test",
-      "btnLink": "http://www.google.com",
-      "id": "qdvLXte"
-    },
-    {
-      "subHeader": "test",
       "heading": "test",
       "positive": false,
       "background": "picture",
@@ -35,6 +26,15 @@
       "btnText": "Buy now",
       "btnLink": "http://www.instagram.com",
       "id": "12lsbAM"
+    },
+    {
+      "subHeader": "Welcome",
+      "heading": "Some text",
+      "positive": true,
+      "background": "picture",
+      "btnText": "Buy now",
+      "btnLink": "http://www.instagram.com",
+      "id": "hkB23Hb"
     }
   ]
 }
