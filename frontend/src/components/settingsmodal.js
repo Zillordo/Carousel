@@ -63,27 +63,26 @@ const Settings = ({ toggle }) => {
                     if (loading) return <h4>Loading</h4>
                     if (error) console.log(error)
                     setTile(data.tiles);
+                    console.log(tile);
 
-                    const order = (event, previusIndex, nextIndex) => {
-                        event.preventDefault();
-                        setTile(() => reorder(tile, previusIndex, nextIndex));
-                    }
+                    // const order = (event, previusIndex, nextIndex) => {
+                    //     event.preventDefault();
+                    //     setTile(() => reorder(tile, previusIndex, nextIndex));
+                    // }
 
                     return (
                         <Fragment>
-                            <Reorder reorderId={data.id} onReorder={order}>
-                                {
-                                    data.tiles.map(tile => (
-                                        <div className="list" key={tile.id}>
-                                            <Tile
-                                                subheader={tile.subHeader}
-                                                heading={tile.heading}
-                                                positive={tile.positive}
-                                            />
-                                        </div>
-                                    ))
-                                }
-                            </Reorder>
+                            {
+                                data.tiles.map(tile => (
+                                    <div className="list" key={tile.id}>
+                                        <Tile
+                                            subheader={tile.subHeader}
+                                            heading={tile.heading}
+                                            positive={tile.positive}
+                                        />
+                                    </div>
+                                ))
+                            }
                         </Fragment>
                     )
                 }
