@@ -1,8 +1,8 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState } from 'react';
 import Reorder, { reorder } from 'react-reorder';
 
 
-const Tile = ({subheader, ...props}) => {
+const Tile = ({ subheader, ...props }) => {
 
     const [slider, setSlider] = useState(true);
 
@@ -12,7 +12,7 @@ const Tile = ({subheader, ...props}) => {
             <div className="tile">
                 <div className="subheader">
                     <div className="dnd"></div>
-                    <input type="text" value={subheader}/>
+                    <input type="text" value={subheader} />
                 </div>
                 <div className="heading">
                     <input type="text"></input>
@@ -27,7 +27,7 @@ const Tile = ({subheader, ...props}) => {
     )
 }
 
-const Tiles = () => {
+const Settings = ({ toggle }) => {
 
     const [tile, setTile] = useState(["Photo", "Nature", "Car"]);
 
@@ -37,24 +37,6 @@ const Tiles = () => {
         setTile(() => reorder(tile, previusIndex, nextIndex));
     }
 
-    return (
-        <React.Fragment>
-            <Reorder reorderId="my-list" autoScroll={true} className="list" onReorder={order} holdTime={150}>
-                {tile.map(item =>
-                    <div key={item}>
-                        <Tile
-                            subheader={item}
-                        />
-                    </div>
-                )}
-            </Reorder>
-        </React.Fragment>
-    )
-}
-
-const Settings = ({ toggle }) => {
-
-    
     return (
         <div className="settings">
             <button className="settings--canclebtn" onClick={toggle}>X</button>
@@ -82,7 +64,15 @@ const Settings = ({ toggle }) => {
                 <div className="body-add">Tiles</div>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
-                    <Tiles />
+                    <Reorder reorderId="my-list" autoScroll={true} className="list" onReorder={order} holdTime={150}>
+                        {
+                            tile.map((item) => (
+                                <div key={item}>
+                                    <Tile subheader={item}/>
+                                </div>
+                            ))
+                        }
+                    </Reorder>
                 </div>
             </div>
             <div className="settings--footer">
