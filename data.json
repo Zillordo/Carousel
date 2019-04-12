@@ -21,7 +21,7 @@
     {
       "subHeader": "Hello",
       "heading": "Some text",
-      "positive": true,
+      "positive": false,
       "background": "picture",
       "btnText": "Buy now",
       "btnLink": "http://www.instagram.com",

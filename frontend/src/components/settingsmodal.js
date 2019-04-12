@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-// import Reorder, { reorder } from 'react-reorder';
+import Reorder, { reorder } from 'react-reorder';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider, Query } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -16,23 +16,29 @@ const TILES_QUERY = gql`
   }
 }
 `;
+
+
 const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql'
 });
 
-const Tile = ({ subheader, ...props }) => {
 
-    const [slider, setSlider] = useState(true);
+
+const Tile = ({ subheader, heading, positive, ...props }) => {
+
+    const [slider, setSlider] = useState(positive);
+    const [subHead, setSubeHead] = useState(subheader);
+    const [head, setHead] = useState(heading);
 
 
     return (
         <div className="tile">
             <div className="subheader">
                 <div className="dnd"></div>
-                <input type="text" value={subheader} />
+                <input type="text" value={subHead} onChange={e => setSubeHead(e.target.value)} />
             </div>
             <div className="heading">
-                <input type="text"></input>
+                <input type="text" value={head} onChange={e => setHead(e.target.value)} />
             </div>
             <div className="positive">
                 <button onClick={() => setSlider(!slider)} style={slider ? { backgroundColor: '#dadada' } : { backgroundColor: '#9700fd' }}>
@@ -45,13 +51,45 @@ const Tile = ({ subheader, ...props }) => {
 
 const Settings = ({ toggle }) => {
 
-    // const [tile, setTile] = useState(["Photo", "Nature", "Car"]);
+    const [tile, setTile] = useState();
 
 
-    // const order = (event, previusIndex, nextIndex) => {
-    //     event.preventDefault();
-    //     setTile(() => reorder(tile, previusIndex, nextIndex));
-    // }
+
+
+    const Tiles = () => (
+        <Query query={TILES_QUERY}>
+            {
+                ({ loading, error, data }) => {
+                    if (loading) return <h4>Loading</h4>
+                    if (error) console.log(error)
+                    setTile(data.tiles);
+
+                    const order = (event, previusIndex, nextIndex) => {
+                        event.preventDefault();
+                        setTile(() => reorder(tile, previusIndex, nextIndex));
+                    }
+
+                    return (
+                        <Fragment>
+                            <Reorder reorderId={data.id} onReorder={order}>
+                                {
+                                    data.tiles.map(tile => (
+                                        <div className="list" key={tile.id}>
+                                            <Tile
+                                                subheader={tile.subHeader}
+                                                heading={tile.heading}
+                                                positive={tile.positive}
+                                            />
+                                        </div>
+                                    ))
+                                }
+                            </Reorder>
+                        </Fragment>
+                    )
+                }
+            }
+        </Query>
+    );
 
     return (
         <ApolloProvider client={client}>
@@ -81,28 +119,7 @@ const Settings = ({ toggle }) => {
                     <div className="body-add">Tiles</div>
                     <div className="body--tiles">
                         <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
-                        <Query query={TILES_QUERY}>
-                            {
-                                ({ loading, error, data }) => {
-                                    if (loading) return <h4>Loading</h4>
-                                    if (error) console.log(error)
-                                    console.log(data);
-                                    return(  
-                                    <Fragment>
-                                        {
-                                            data.tiles.map(tile => (
-                                                <div className="list" key={tile.id}>
-                                                    <Tile
-                                                        subheader={tile.subHeader}
-                                                    />
-                                                </div>
-                                            ))
-                                        }
-                                    </Fragment>
-                                    )
-                                }
-                            }
-                        </Query>
+                        <Tiles />
                     </div>
                 </div>
                 <div className="settings--footer">
