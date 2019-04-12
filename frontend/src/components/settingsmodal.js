@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import Reorder, { reorder } from 'react-reorder';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider, Query } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -51,24 +50,13 @@ const Tile = ({ subheader, heading, positive, ...props }) => {
 
 const Settings = ({ toggle }) => {
 
-    const [tile, setTile] = useState();
-
-
-
-
     const Tiles = () => (
         <Query query={TILES_QUERY}>
             {
                 ({ loading, error, data }) => {
                     if (loading) return <h4>Loading</h4>
                     if (error) console.log(error)
-                    setTile(data.tiles);
-                    console.log(tile);
-
-                    // const order = (event, previusIndex, nextIndex) => {
-                    //     event.preventDefault();
-                    //     setTile(() => reorder(tile, previusIndex, nextIndex));
-                    // }
+                    console.log(data);
 
                     return (
                         <Fragment>
