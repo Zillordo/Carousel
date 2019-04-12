@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-
+import Tile from './tile';
 
 const TILES_QUERY = gql`
     query TilesQuery{
@@ -15,31 +15,6 @@ const TILES_QUERY = gql`
 }
 `;
 
-
-const Tile = ({ subheader, heading, positive, ...props }) => {
-
-    const [slider, setSlider] = useState(positive);
-    const [subHead, setSubeHead] = useState(subheader);
-    const [head, setHead] = useState(heading);
-
-
-    return (
-        <div className="tile">
-            <div className="subheader">
-                <div className="dnd"></div>
-                <input type="text" value={subHead} onChange={e => setSubeHead(e.target.value)} />
-            </div>
-            <div className="heading">
-                <input type="text" value={head} onChange={e => setHead(e.target.value)} />
-            </div>
-            <div className="positive">
-                <button onClick={() => setSlider(!slider)} style={slider ? { backgroundColor: '#dadada' } : { backgroundColor: '#9700fd' }}>
-                    <div className="slider" style={slider ? { float: 'left' } : { float: 'right' }}></div>
-                </button>
-            </div>
-        </div>
-    )
-}
 
 const RenderTiles = () => (
     <Query query={TILES_QUERY}>
@@ -72,39 +47,39 @@ const RenderTiles = () => (
 const Settings = ({ toggle }) => {
 
     return (
-            <div className="settings">
-                <button className="settings--canclebtn" onClick={toggle}>X</button>
-                <div className="settings--header">
-                    <h1>Header Settings</h1>
-                    <div className="header--options">
-                        <div className="header--sizes">
-                            <p>Size</p>
-                            <button>S</button>
-                            <button>M</button>
-                            <button>L</button>
-                        </div>
-                        <div className="header--animation">
-                            <p>Animations</p>
-                            <select>
-                                <option>Frtine wheel</option>
-                            </select>
-                            <select>
-                                <option>Auto 2 sec</option>
-                            </select>
-                        </div>
+        <div className="settings">
+            <button className="settings--canclebtn" onClick={toggle}>X</button>
+            <div className="settings--header">
+                <h1>Header Settings</h1>
+                <div className="header--options">
+                    <div className="header--sizes">
+                        <p>Size</p>
+                        <button>S</button>
+                        <button>M</button>
+                        <button>L</button>
                     </div>
-                </div>
-                <div className="settings--body">
-                    <div className="body-add">Tiles</div>
-                    <div className="body--tiles">
-                        <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
-                        <RenderTiles />
+                    <div className="header--animation">
+                        <p>Animations</p>
+                        <select>
+                            <option>Frtine wheel</option>
+                        </select>
+                        <select>
+                            <option>Auto 2 sec</option>
+                        </select>
                     </div>
-                </div>
-                <div className="settings--footer">
-                    <button>SAVE</button>
                 </div>
             </div>
+            <div className="settings--body">
+                <div className="body-add">Tiles</div>
+                <div className="body--tiles">
+                    <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
+                    <RenderTiles />
+                </div>
+            </div>
+            <div className="settings--footer">
+                <button>SAVE</button>
+            </div>
+        </div>
     )
 }
 
