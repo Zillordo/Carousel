@@ -12,7 +12,7 @@ const client = new ApolloClient({
 });
 
 const App = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
 
   return (
     <React.Fragment>

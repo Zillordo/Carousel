@@ -16,35 +16,41 @@ const TILES_QUERY = gql`
 `;
 
 
-const RenderTiles = () => (
-    <Query query={TILES_QUERY}>
-        {
-            ({ loading, error, data }) => {
-                if (loading) return <h4>Loading</h4>
-                if (error) console.log(error)
-                console.log(data);
+const Tiles = ({save}) => {
 
-                return (
-                    <Fragment>
-                        {
-                            data.tiles.map(tile => (
-                                <div className="list" key={tile.id}>
+    console.log(save);
+
+    return (
+        <Query query={TILES_QUERY}>
+            {
+                ({ loading, error, data }) => {
+                    if (loading) return <h4>Loading . . .</h4>;
+                    if (error) console.log(error);
+                    console.log(data);
+
+                    return (
+                        <Fragment>
+                            {
+                                data.tiles.map(tile => (
                                     <Tile
+                                        key={tile.id}
                                         subheader={tile.subHeader}
                                         heading={tile.heading}
                                         positive={tile.positive}
                                     />
-                                </div>
-                            ))
-                        }
-                    </Fragment>
-                )
+                                ))
+                            }
+                        </Fragment>
+                    )
+                }
             }
-        }
-    </Query>
-);
+        </Query>
+    );
+}
 
 const Settings = ({ toggle }) => {
+
+    const [save, setSave] = useState(false);
 
     return (
         <div className="settings">
@@ -73,11 +79,13 @@ const Settings = ({ toggle }) => {
                 <div className="body-add">Tiles</div>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
-                    <RenderTiles />
+                    <div className="list">
+                        <Tiles save={save} />
+                    </div>
                 </div>
             </div>
             <div className="settings--footer">
-                <button>SAVE</button>
+                <button type="submit" onClick={()=>setSave(true)}>SAVE</button>
             </div>
         </div>
     )
