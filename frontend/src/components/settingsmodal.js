@@ -1,59 +1,38 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tile from './tile';
-// import { Query } from 'react-apollo';
-// import gql from 'graphql-tag';
-// import Tile from './tile';
-
-// const TILES_QUERY = gql`
-//     query TilesQuery{
-//         tiles {
-//             id
-//             subHeader
-//             heading
-//             positive
-//             background
-//   }
-// }
-// `;
 
 
-// const Tiles = ({ save }) => {
+const Settings = ({ toggle }) => {
 
-//     console.log(save);
-
-//     return (
-//         <Query query={TILES_QUERY}>
-//             {
-//                 ({ loading, error, data }) => {
-//                     if (loading) return <h4>Loading . . .</h4>;
-//                     if (error) console.log(error);
-//                     console.log(data);
-
-//                     return (
-//                         <Fragment>
-//                             {
-//                                 data.tiles.map(tile => (
-//                                     <Tile data={tile} key={tile.id}/>
-//                                 ))
-//                             }
-//                         </Fragment>
-//                     )
-//                 }
-//             }
-//         </Query>
-//     );
-// }
-
-const Settings = ({ toggle, data }) => {
+    const [data, setData] = useState(
+        {
+          increment: 0,
+          size: "l",
+          animation: "Fortine wheel",
+          time: 2,
+          tiles: []
+        }
+      );
+    
+    
+      const save = () => {
+        localStorage.setItem('data', JSON.stringify(data));
+      }
+    
+      useEffect(() => {
+        let data = JSON.parse(localStorage.getItem('data'));
+        setData(data);
+      },[]);
 
     const [state, setState] = useState(data.tiles);
+    const originTiles = state;
 
-    console.log(state);
+    console.log(state, data, originTiles);
 
     const newTile = {
         subHeader: "",
         heading: "",
-        positive: false,
+        positive: true,
         background: ""
     };
 
@@ -64,8 +43,10 @@ const Settings = ({ toggle, data }) => {
                 <Tile key={data.increment} data={item} />
             )
         }
-        )
+        );
     }
+
+    
 
     return (
         <div className="settings">
@@ -92,7 +73,7 @@ const Settings = ({ toggle, data }) => {
             </div>
             <div className="settings--body">
                 <div className="body-add">Tiles</div>
-                <button onClick={() => { data.tiles.push(newTile); setState({state: data.tiles}) }}>Add</button>
+                <button onClick={() => { data.tiles.push(newTile); setState([...data.tiles]) }}>Add</button>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
                     <div className="list">
@@ -101,7 +82,7 @@ const Settings = ({ toggle, data }) => {
                 </div>
             </div>
             <div className="settings--footer">
-                <button type="submit">SAVE</button>
+                <button onClick={save}>SAVE</button>
             </div>
         </div>
     )
