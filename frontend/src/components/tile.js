@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const Tile = ({ subheader, heading, positive, ...props }) => {
+const Tile = ({ data }) => {
 
-    const [slider, setSlider] = useState(positive);
-    const [subHead, setSubeHead] = useState(subheader);
-    const [head, setHead] = useState(heading);
+    const [slider, setSlider] = useState(data.positive);
+    const [subHead, setSubeHead] = useState(data.subHeader);
+    const [head, setHead] = useState(data.heading);
 
 
     return (

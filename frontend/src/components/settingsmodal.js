@@ -16,7 +16,7 @@ const TILES_QUERY = gql`
 `;
 
 
-const Tiles = ({save}) => {
+const Tiles = ({ save }) => {
 
     console.log(save);
 
@@ -32,12 +32,7 @@ const Tiles = ({save}) => {
                         <Fragment>
                             {
                                 data.tiles.map(tile => (
-                                    <Tile
-                                        key={tile.id}
-                                        subheader={tile.subHeader}
-                                        heading={tile.heading}
-                                        positive={tile.positive}
-                                    />
+                                    <Tile data={tile} key={tile.id}/>
                                 ))
                             }
                         </Fragment>
@@ -85,7 +80,7 @@ const Settings = ({ toggle }) => {
                 </div>
             </div>
             <div className="settings--footer">
-                <button type="submit" onClick={()=>setSave(true)}>SAVE</button>
+                <button type="submit" onClick={() => setSave(true)}>SAVE</button>
             </div>
         </div>
     )
