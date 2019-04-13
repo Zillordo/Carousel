@@ -1,51 +1,71 @@
 import React, { Fragment, useState } from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import Tile from './tile';
+// import { Query } from 'react-apollo';
+// import gql from 'graphql-tag';
+// import Tile from './tile';
 
-const TILES_QUERY = gql`
-    query TilesQuery{
-        tiles {
-            id
-            subHeader
-            heading
-            positive
-            background
-  }
-}
-`;
+// const TILES_QUERY = gql`
+//     query TilesQuery{
+//         tiles {
+//             id
+//             subHeader
+//             heading
+//             positive
+//             background
+//   }
+// }
+// `;
 
 
-const Tiles = ({ save }) => {
+// const Tiles = ({ save }) => {
 
-    console.log(save);
+//     console.log(save);
 
-    return (
-        <Query query={TILES_QUERY}>
-            {
-                ({ loading, error, data }) => {
-                    if (loading) return <h4>Loading . . .</h4>;
-                    if (error) console.log(error);
-                    console.log(data);
+//     return (
+//         <Query query={TILES_QUERY}>
+//             {
+//                 ({ loading, error, data }) => {
+//                     if (loading) return <h4>Loading . . .</h4>;
+//                     if (error) console.log(error);
+//                     console.log(data);
 
-                    return (
-                        <Fragment>
-                            {
-                                data.tiles.map(tile => (
-                                    <Tile data={tile} key={tile.id}/>
-                                ))
-                            }
-                        </Fragment>
-                    )
-                }
-            }
-        </Query>
-    );
-}
+//                     return (
+//                         <Fragment>
+//                             {
+//                                 data.tiles.map(tile => (
+//                                     <Tile data={tile} key={tile.id}/>
+//                                 ))
+//                             }
+//                         </Fragment>
+//                     )
+//                 }
+//             }
+//         </Query>
+//     );
+// }
 
-const Settings = ({ toggle }) => {
+const Settings = ({ toggle, data }) => {
 
-    const [save, setSave] = useState(false);
+    const [state, setState] = useState(data);
+
+    console.log(state);
+
+    const newTile = {
+        subHeader: "",
+        heading: "",
+        positive: false,
+        background: ""
+    };
+
+    const renderTiles = () => {
+        return data.tiles.map(item => {
+            data.increment++;
+            return (
+                <Tile key={data.increment} data={item} />
+            )
+        }
+        )
+    }
 
     return (
         <div className="settings">
@@ -72,15 +92,16 @@ const Settings = ({ toggle }) => {
             </div>
             <div className="settings--body">
                 <div className="body-add">Tiles</div>
+                <button onClick={() => { data.tiles.push(newTile) }}>Add</button>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
                     <div className="list">
-                        <Tiles save={save} />
+                        {renderTiles()}
                     </div>
                 </div>
             </div>
             <div className="settings--footer">
-                <button type="submit" onClick={() => setSave(true)}>SAVE</button>
+                <button type="submit">SAVE</button>
             </div>
         </div>
     )

@@ -14,6 +14,27 @@ const client = new ApolloClient({
 const App = () => {
   const [toggle, setToggle] = useState(false);
 
+  const [tile, setTile] = useState(
+    {
+      id: 1,
+      subHeader: "",
+      heading: "",
+      positive: false,
+      background: ""
+    }
+  );
+
+  const [data, setData] = useState(
+    {
+      increment: 0,
+      size: "l",
+      animation: "Fortine wheel",
+      time: 2,
+      tiles: [tile]
+    }
+  );
+
+
   return (
     <React.Fragment>
       <ApolloProvider client={client}>
@@ -21,6 +42,7 @@ const App = () => {
         {toggle && <Backdrop />}
         {toggle && <Settings
           toggle={() => setToggle(() => !toggle)}
+          data={data}
         />}
       </ApolloProvider>
     </React.Fragment>
