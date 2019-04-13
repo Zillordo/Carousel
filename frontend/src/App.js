@@ -16,7 +16,6 @@ const App = () => {
 
   const [tile, setTile] = useState(
     {
-      id: 1,
       subHeader: "",
       heading: "",
       positive: false,
@@ -30,7 +29,7 @@ const App = () => {
       size: "l",
       animation: "Fortine wheel",
       time: 2,
-      tiles: [tile]
+      tiles: []
     }
   );
 

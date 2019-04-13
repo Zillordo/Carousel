@@ -46,7 +46,7 @@ import Tile from './tile';
 
 const Settings = ({ toggle, data }) => {
 
-    const [state, setState] = useState(data);
+    const [state, setState] = useState(data.tiles);
 
     console.log(state);
 
@@ -92,7 +92,7 @@ const Settings = ({ toggle, data }) => {
             </div>
             <div className="settings--body">
                 <div className="body-add">Tiles</div>
-                <button onClick={() => { data.tiles.push(newTile) }}>Add</button>
+                <button onClick={() => { data.tiles.push(newTile); setState({state: data.tiles}) }}>Add</button>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
                     <div className="list">
