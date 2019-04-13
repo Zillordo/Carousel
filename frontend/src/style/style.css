@@ -39,8 +39,8 @@ body {
   float: right;
   outline: none;
   font-family: "Montserrat", sans-serif;
-  font-size: 18px;
-  font-weight: 900;
+  font-size: 30px;
+  font-weight: 500;
   -webkit-transition: all 100ms ease-in-out;
   transition: all 100ms ease-in-out;
 }
@@ -114,6 +114,52 @@ body {
   line-height: 55px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  width: 100%;
+}
+
+.settings--body .body-add .container--add {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.settings--body .body-add .container--add button {
+  float: right;
+  margin: auto;
+  margin-right: 5px;
+  border: 0;
+  background-color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  padding: 0;
+  outline: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.settings--body .body-add .container--add button .plus {
+  width: 20px;
+  height: 20px;
+  background-color: #9700fd;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 6px;
 }
 
 .settings--body .body--tiles {
@@ -189,8 +235,8 @@ body {
   display: -ms-grid;
   display: grid;
   width: 100%;
-  -ms-grid-columns: 20% 50% 10% 10% 10%;
-      grid-template-columns: 20% 50% 10% 10% 10%;
+  -ms-grid-columns: 20% 50% 10% 12% 8%;
+      grid-template-columns: 20% 50% 10% 12% 8%;
   border: 0.25px solid #dadada;
   -ms-grid-column: 5;
       grid-column-start: 5;
@@ -296,5 +342,41 @@ body {
   margin-right: 2px;
   float: right;
   border-radius: 2px;
+}
+
+.list .tile .background {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.list .tile .background button {
+  margin: auto;
+  margin-left: 40%;
+  width: 53px;
+  height: 35px;
+  padding: 0;
+  border: 1px solid #dadada;
+  background-color: #ffffff;
+  outline: none;
+}
+
+.list .background-modular {
+  width: 280px;
+  height: 185px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  background-color: #ffffff;
+  margin: auto;
 }
 /*# sourceMappingURL=style.css.map */

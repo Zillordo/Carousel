@@ -53,7 +53,7 @@ const Settings = ({ toggle }) => {
 
     return (
         <div className="settings">
-            <button className="settings--canclebtn" onClick={toggle}>X</button>
+            <button className="settings--canclebtn" onClick={toggle}>×</button>
             <div className="settings--header">
                 <h1>Header Settings</h1>
                 <div className="header--options">
@@ -78,8 +78,10 @@ const Settings = ({ toggle }) => {
                 </div>
             </div>
             <div className="settings--body">
-                <div className="body-add">Tiles</div>
-                <button onClick={() => { data.tiles.push(newTile); forceRender() }}>Add</button>
+                <div className="body-add">
+                    Tiles
+                    <div className="container--add"><button onClick={() => { data.tiles.push(newTile); forceRender() }}><div className="plus">+</div>Add Tile</button></div>
+                </div>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
                     <div className="list">

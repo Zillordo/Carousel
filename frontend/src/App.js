@@ -8,16 +8,19 @@ import Settings from './components/settingsmodal';
 
 
 const App = () => {
-  const [toggle, setToggle] = useState(false);  
+  const [toggle, setToggle] = useState(false);
 
 
   return (
     <React.Fragment>
       <button onClick={() => setToggle(() => !toggle)}>Settings</button>
-      {toggle && <Backdrop />}
-      {toggle && <Settings
-        toggle={() => setToggle(() => !toggle)}
-      />}
+      {toggle &&
+        <Backdrop>
+          <Settings
+            toggle={() => setToggle(() => !toggle)}
+          />
+        </Backdrop>
+      }
     </React.Fragment>
   );
 }
