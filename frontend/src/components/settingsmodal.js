@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Tile from './tile';
 
 
-const useForceUpdate = () => {
+const useForceRender = () => {
     const [value, set] = useState(true);
     return () => set(!value);
 }
 
 const Settings = ({ toggle }) => {
 
-    const forceUpdate = useForceUpdate();
+    const forceRender = useForceRender();
 
 
     const [data, setData] = useState(
@@ -17,7 +17,7 @@ const Settings = ({ toggle }) => {
             increment: 0,
             size: '',
             animation: '',
-            time: null,
+            time: '',
             tiles: []
         }
     );
@@ -59,17 +59,17 @@ const Settings = ({ toggle }) => {
                 <div className="header--options">
                     <div className="header--sizes">
                         <p>Size</p>
-                        <button onClick={() => { forceUpdate(); data.size = 's' }} style={data.size === 's' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>S</button>
-                        <button onClick={() => { forceUpdate(); data.size = 'm' }} style={data.size === 'm' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>M</button>
-                        <button onClick={() => { forceUpdate(); data.size = 'l' }} style={data.size === 'l' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>L</button>
+                        <button onClick={() => { forceRender(); data.size = 's' }} style={data.size === 's' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>S</button>
+                        <button onClick={() => { forceRender(); data.size = 'm' }} style={data.size === 'm' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>M</button>
+                        <button onClick={() => { forceRender(); data.size = 'l' }} style={data.size === 'l' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>L</button>
                     </div>
                     <div className="header--animation">
                         <p>Animations</p>
-                        <select value={data.animation} onChange={e => { forceUpdate(); data.animation = e.target.value }}>
+                        <select value={data.animation} onChange={e => { forceRender(); data.animation = e.target.value }}>
                             <option value="Fortine">Fortine wheel</option>
                             <option value="Animation">Animation</option>
                         </select>
-                        <select value={data.time} onChange={e => { forceUpdate(); data.time = e.target.value }}>
+                        <select value={data.time} onChange={e => { forceRender(); data.time = e.target.value }}>
                             <option value={2}>Auto 2 sec</option>
                             <option value={5}>Auto 5 sec</option>
                             <option value={10}>Auto 10 sec</option>
@@ -79,7 +79,7 @@ const Settings = ({ toggle }) => {
             </div>
             <div className="settings--body">
                 <div className="body-add">Tiles</div>
-                <button onClick={() => { data.tiles.push(newTile); forceUpdate() }}>Add</button>
+                <button onClick={() => { data.tiles.push(newTile); forceRender() }}>Add</button>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
                     <div className="list">
