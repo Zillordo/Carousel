@@ -14,6 +14,12 @@ const Settings = ({ toggle }) => {
         }
       );
     
+      const newTile = {
+          subHeader: "",
+          heading: "",
+          positive: true,
+          background: ""
+      };
     
       const save = () => {
         localStorage.setItem('data', JSON.stringify(data));
@@ -23,18 +29,8 @@ const Settings = ({ toggle }) => {
         let data = JSON.parse(localStorage.getItem('data'));
         setData(data);
       },[]);
+    
 
-    const [state, setState] = useState(data.tiles);
-    const originTiles = state;
-
-    console.log(state, data, originTiles);
-
-    const newTile = {
-        subHeader: "",
-        heading: "",
-        positive: true,
-        background: ""
-    };
 
     const renderTiles = () => {
         return data.tiles.map(item => {
@@ -73,7 +69,7 @@ const Settings = ({ toggle }) => {
             </div>
             <div className="settings--body">
                 <div className="body-add">Tiles</div>
-                <button onClick={() => { data.tiles.push(newTile); setState([...data.tiles]) }}>Add</button>
+                <button onClick={() => { data.tiles.push(newTile); setData({...data}) }}>Add</button>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
                     <div className="list">
