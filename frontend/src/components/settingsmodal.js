@@ -4,32 +4,38 @@ import Tile from './tile';
 
 const Settings = ({ toggle }) => {
 
+
+    const [size, setSize] = useState();
+    const [animation, setAnimation] = useState();
+    const [time, setTime] = useState();
+   
+    
     const [data, setData] = useState(
         {
-          increment: 0,
-          size: "l",
-          animation: "Fortine wheel",
-          time: 2,
-          tiles: []
+            increment: 0,
+            size: '',
+            animation: '',
+            time: null,
+            tiles: []
         }
-      );
-    
-      const newTile = {
-          subHeader: "",
-          heading: "",
-          positive: true,
-          background: ""
-      };
-    
-      const save = () => {
+    );
+
+    const newTile = {
+        subHeader: "",
+        heading: "",
+        positive: true,
+        background: ""
+    };
+
+    const save = () => {
         localStorage.setItem('data', JSON.stringify(data));
-      }
-    
-      useEffect(() => {
-        let data = JSON.parse(localStorage.getItem('data'));
-        setData(data);
-      },[]);
-    
+    }
+
+    useEffect(() => {
+        let dataGet = JSON.parse(localStorage.getItem('data'));
+        setData(dataGet);
+    }, []);
+
 
 
     const renderTiles = () => {
@@ -42,7 +48,6 @@ const Settings = ({ toggle }) => {
         );
     }
 
-    
 
     return (
         <div className="settings">
@@ -52,24 +57,27 @@ const Settings = ({ toggle }) => {
                 <div className="header--options">
                     <div className="header--sizes">
                         <p>Size</p>
-                        <button>S</button>
-                        <button>M</button>
-                        <button>L</button>
+                        <button onClick={() => {setSize('s'); data.size = 's'}} style={data.size === 's' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>S</button>
+                        <button onClick={() => {setSize('m'); data.size = 'm'}} style={data.size === 'm' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>M</button>
+                        <button onClick={() => {setSize('l'); data.size = 'l'}} style={data.size === 'l' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>L</button>
                     </div>
                     <div className="header--animation">
                         <p>Animations</p>
-                        <select>
-                            <option>Frtine wheel</option>
+                        <select value={data.animation} onChange={e => {setAnimation(e.target.value); data.animation = e.target.value}}>
+                            <option value="Fortine">Fortine wheel</option>
+                            <option value="Animation">Animation</option>
                         </select>
-                        <select>
-                            <option>Auto 2 sec</option>
+                        <select value={data.time} onChange={e => {setTime(e.target.value); data.time = e.target.value}}>
+                            <option value={2}>Auto 2 sec</option>
+                            <option value={5}>Auto 5 sec</option>
+                            <option value={10}>Auto 10 sec</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div className="settings--body">
                 <div className="body-add">Tiles</div>
-                <button onClick={() => { data.tiles.push(newTile); setData({...data}) }}>Add</button>
+                <button onClick={() => { data.tiles.push(newTile); setData({ ...data }) }}>Add</button>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
                     <div className="list">
@@ -78,7 +86,7 @@ const Settings = ({ toggle }) => {
                 </div>
             </div>
             <div className="settings--footer">
-                <button onClick={save}>SAVE</button>
+                <button onClick={() => { save(); toggle() }}>SAVE</button>
             </div>
         </div>
     )

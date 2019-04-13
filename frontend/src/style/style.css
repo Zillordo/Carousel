@@ -81,11 +81,6 @@ body {
   transition: all 100ms ease-in-out;
 }
 
-.settings--header .header--options .header--sizes button:hover {
-  background-color: #5c0099;
-  color: #ffffff;
-}
-
 .settings--header .header--options .header--animation {
   margin-left: 40px;
 }

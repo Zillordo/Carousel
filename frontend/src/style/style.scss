@@ -69,10 +69,6 @@ body {
           outline: none;
           font-family: $montserrat;
           transition: all 100ms ease-in-out;
-          &:hover {
-            background-color: #5c0099;
-            color: $white;
-          }
         }
       }
       .header--animation {

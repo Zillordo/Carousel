@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './style/style.css';
 
@@ -8,9 +8,7 @@ import Settings from './components/settingsmodal';
 
 
 const App = () => {
-  const [toggle, setToggle] = useState(false);
-
-  
+  const [toggle, setToggle] = useState(false);  
 
 
   return (
