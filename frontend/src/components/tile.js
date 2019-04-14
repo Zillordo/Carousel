@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import drop from '../pictures/page-1-copy-24@3x.png';
+import useForceRender from '../helpers/customHooks';
 
 
 const getBase64 = (element, cb) => {
+
     if (element === null) {
         return;
     }
@@ -17,12 +20,15 @@ const getBase64 = (element, cb) => {
 }
 
 
-const Background = ({ getImage, ...props }) => {
+
+
+const Background = ({ image, getImage, ...props }) => {
+
     return (
         <div className="modular--background">
             {props.children}
             <div className="chip"></div>
-            <div className="img--div"></div>
+            <div className="img--div"><img src={image} alt=""></img></div>
             <label htmlFor="file"><div></div>Upload image</label>
             <input type="file" id="file" onChange={getImage} />
         </div>
@@ -36,13 +42,18 @@ const Tile = ({ data, id }) => {
     const [slider, setSlider] = useState(data.positive);
     const [img, setImg] = useState(null);
     const [color, setColor] = useState();
+    const forceRender = useForceRender();
 
     const [backToggle, setBackToggle] = useState();
 
+    useEffect(() => {
+        forceRender();
+        getBase64(img, res => {
+            data.background = res;
+        });
+    })
 
-    getBase64(img, res => data.background = res);
     data.color = color;
-
 
     return (
         <React.Fragment>
@@ -60,26 +71,29 @@ const Tile = ({ data, id }) => {
                     </button>
                 </div>
                 <div className="background">
-                    <button onClick={() => setBackToggle(!backToggle)}></button>
+                    <button onClick={() => setBackToggle(!backToggle)}>
+                        <img className="btn-image" src={data.background} alt=""></img>
+                        <img className="btn-drop" src={drop} alt="" />
+                    </button>
 
-            {
-                backToggle &&
-                <React.Fragment>
-                    <div className="backdrop" onClick={()=> setBackToggle(!backToggle)}></div>
-                    <Background getImage={e => setImg(e.target)}>
-                        <div className="colors">
-                            <button className="purple" onClick={() => setColor('#9700fd')}></button>
-                            <button className="blue" onClick={() => setColor('#60cefe')}></button>
-                            <button className="green" onClick={() => setColor('#49e5a5')}></button>
-                            <button className="white" onClick={() => setColor('#ffffff')}></button>
-                            <button className="black" onClick={() => setColor('#000000')}></button>
-                            <button className="darkgGray" onClick={() => setColor('#808080')}></button>
-                            <button className="lightGray" onClick={() => setColor('#dadada')}></button>
-                            <button className="lightestGgray" onClick={() => setColor('#f5f5f5')}></button>
-                        </div>
-                    </Background>
-                </React.Fragment>
-            }
+                    {
+                        backToggle &&
+                        <React.Fragment>
+                            <div className="backdrop" onClick={() => setBackToggle(!backToggle)}></div>
+                            <Background getImage={e => setImg(e.target)} image={data.background}>
+                                <div className="colors">
+                                    <button className="purple" onClick={() => setColor('#9700fd')}></button>
+                                    <button className="blue" onClick={() => setColor('#60cefe')}></button>
+                                    <button className="green" onClick={() => setColor('#49e5a5')}></button>
+                                    <button className="white" onClick={() => setColor('#ffffff')}></button>
+                                    <button className="black" onClick={() => setColor('#000000')}></button>
+                                    <button className="darkgGray" onClick={() => setColor('#808080')}></button>
+                                    <button className="lightGray" onClick={() => setColor('#dadada')}></button>
+                                    <button className="lightestGgray" onClick={() => setColor('#f5f5f5')}></button>
+                                </div>
+                            </Background>
+                        </React.Fragment>
+                    }
                 </div>
             </div>
         </React.Fragment>

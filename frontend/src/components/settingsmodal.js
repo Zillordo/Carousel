@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Tile from './tile';
-
-
-const useForceRender = () => {
-    const [value, set] = useState(true);
-    return () => set(!value);
-}
+import useForceRender from '../helpers/customHooks';
 
 const Settings = ({ toggle }) => {
 

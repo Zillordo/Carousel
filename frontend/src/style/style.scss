@@ -270,6 +270,13 @@ body {
       flex-flow: row nowrap;
       align-items: center;
       position: relative;
+
+      .btn-image {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-left: 6px;
+      }
       button {
         margin: auto;
         margin-left: 40%;
@@ -279,6 +286,11 @@ body {
         border: 1px solid $gray;
         background-color: $white;
         outline: none;
+        .btn-drop{
+          width: 8px;
+          height: 7px;
+          transform: rotate(180deg);
+        }
       }
     }
   }
@@ -295,7 +307,6 @@ body {
     border: 1px solid #dadada;
     display: -webkit-flex;
     display: flex;
-    -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     box-shadow: 0 2px 12px 0 rgba(159, 167, 187, 0.22), 0 8px 12px 0 rgba(0, 0, 0, 0.15);
     .chip {
@@ -311,9 +322,12 @@ body {
     .img--div {
       width: 100px;
       height: 100px;
-      background-color: $purple;
       margin: 10px;
       margin-left: 15px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     label {
       width: 100%;

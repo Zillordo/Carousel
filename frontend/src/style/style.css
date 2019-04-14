@@ -360,6 +360,13 @@ body {
   position: relative;
 }
 
+.list .tile .background .btn-image {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-left: 6px;
+}
+
 .list .tile .background button {
   margin: auto;
   margin-left: 40%;
@@ -369,6 +376,13 @@ body {
   border: 1px solid #dadada;
   background-color: #ffffff;
   outline: none;
+}
+
+.list .tile .background button .btn-drop {
+  width: 8px;
+  height: 7px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .list .modular--background {
@@ -407,9 +421,13 @@ body {
 .list .modular--background .img--div {
   width: 100px;
   height: 100px;
-  background-color: #9700fd;
   margin: 10px;
   margin-left: 15px;
+}
+
+.list .modular--background .img--div img {
+  width: 100%;
+  height: 100%;
 }
 
 .list .modular--background label {
