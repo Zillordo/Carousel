@@ -269,6 +269,7 @@ body {
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
+      position: relative;
       button {
         margin: auto;
         margin-left: 40%;
@@ -284,17 +285,20 @@ body {
 
   .modular--background {
     width: 280px;
+    z-index: 1;
     height: 180px;
     position: absolute;
-    top: 10;
-    left: 597px;
-    background-color: $white;
+    right: -110px;
+    top: 49px;
+    background-color: #ffffff;
     margin: auto;
-    border: 1px solid $gray;
+    border: 1px solid #dadada;
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     box-shadow: 0 2px 12px 0 rgba(159, 167, 187, 0.22), 0 8px 12px 0 rgba(0, 0, 0, 0.15);
-    .chip{
+    .chip {
       width: 10px;
       height: 10px;
       background-color: inherit;

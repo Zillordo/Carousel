@@ -61,8 +61,7 @@ const Tile = ({ data, id }) => {
                 </div>
                 <div className="background">
                     <button onClick={() => setBackToggle(!backToggle)}></button>
-                </div>
-            </div>
+
             {
                 backToggle &&
                 <React.Fragment>
@@ -81,6 +80,8 @@ const Tile = ({ data, id }) => {
                     </Background>
                 </React.Fragment>
             }
+                </div>
+            </div>
         </React.Fragment>
     )
 }

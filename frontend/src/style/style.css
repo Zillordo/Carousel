@@ -357,6 +357,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .list .tile .background button {
@@ -372,10 +373,11 @@ body {
 
 .list .modular--background {
   width: 280px;
+  z-index: 1;
   height: 180px;
   position: absolute;
-  top: 10;
-  left: 597px;
+  right: -110px;
+  top: 49px;
   background-color: #ffffff;
   margin: auto;
   border: 1px solid #dadada;
