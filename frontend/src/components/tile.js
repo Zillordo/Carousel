@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
 import Backdrop from './Backdrop';
 
-const Background = () => {
+
+const getBase64 = (element, cb) => {
+    if (element === null) {
+        return;
+    }
+    let file = element.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+        cb(reader.result);
+    }
+    reader.onerror = err => {
+        console.log(err);
+    }
+}
+
+
+const Background = ({ getImage }) => {
     return (
         <div className="modular--background">
-            hey
-            hey
-            hey
-            hey
+            <input type="file" onChange={getImage} />
         </div>
     )
 }
@@ -17,8 +31,13 @@ const Tile = ({ data, id }) => {
     const [subHead, setSubeHead] = useState(data.subHeader);
     const [head, setHead] = useState(data.heading);
     const [slider, setSlider] = useState(data.positive);
+    const [img, setImg] = useState(null);
 
     const [backToggle, setBackToggle] = useState();
+
+
+    getBase64(img, res => data.background = res);
+
 
 
     return (
@@ -40,7 +59,7 @@ const Tile = ({ data, id }) => {
                     <button onClick={() => setBackToggle(!backToggle)}></button>
                 </div>
             </div>
-            {backToggle && <Background/>}
+            {backToggle && <Background getImage={e => setImg(e.target)} />}
         </React.Fragment>
     )
 }
