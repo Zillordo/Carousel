@@ -4,7 +4,7 @@
   left: 0;
   height: 100vh;
   width: 100%;
-  background-color: rgba(170, 170, 170, 0.01);
+  background-color: rgba(170, 170, 170, 0);
 }
 
 body {
@@ -370,13 +370,121 @@ body {
   outline: none;
 }
 
-.list .background-modular {
+.list .modular--background {
   width: 280px;
-  height: 185px;
+  height: 180px;
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: 10;
+  left: 597px;
   background-color: #ffffff;
   margin: auto;
+  border: 1px solid #dadada;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(159, 167, 187, 0.22), 0 8px 12px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 2px 12px 0 rgba(159, 167, 187, 0.22), 0 8px 12px 0 rgba(0, 0, 0, 0.15);
+}
+
+.list .modular--background .chip {
+  width: 10px;
+  height: 10px;
+  background-color: inherit;
+  border-left: 1px solid #dadada;
+  border-top: 1px solid #dadada;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  position: relative;
+  top: -6.5px;
+}
+
+.list .modular--background .img--div {
+  width: 100px;
+  height: 100px;
+  background-color: #9700fd;
+  margin: 10px;
+  margin-left: 15px;
+}
+
+.list .modular--background label {
+  width: 100%;
+  height: 40px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  line-height: 44px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-top: 1px solid #dadada;
+}
+
+.list .modular--background label div {
+  height: 100%;
+  width: 50px;
+  background-image: url("../pictures/upload@2x.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+}
+
+.list .modular--background input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.list .modular--background .colors {
+  width: 115px;
+  height: 50px;
+  margin: 15px;
+  margin-right: 3px;
+}
+
+.list .modular--background .colors button {
+  width: 18px;
+  height: 18px;
+  border: solid 1px #dde0e3;
+  padding: 0;
+  outline: none;
+  margin: 5px;
+}
+
+.list .modular--background .colors button.purple {
+  background-color: #9700fd;
+}
+
+.list .modular--background .colors button.blue {
+  background-color: #60cefe;
+}
+
+.list .modular--background .colors button.green {
+  background-color: #49e5a5;
+}
+
+.list .modular--background .colors button.white {
+  background-color: #ffffff;
+}
+
+.list .modular--background .colors button.black {
+  background-color: #000000;
+}
+
+.list .modular--background .colors button.darkGray {
+  background-color: #808080;
+}
+
+.list .modular--background .colors button.lightGray {
+  background-color: #dadada;
+}
+
+.list .modular--background .colors button.lightestGray {
+  background-color: #f5f5f5;
 }
 /*# sourceMappingURL=style.css.map */

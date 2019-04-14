@@ -23,10 +23,11 @@ const Settings = ({ toggle }) => {
     );
 
     const newTile = {
-        subHeader: "",
-        heading: "",
+        subHeader: '',
+        heading: '',
         positive: true,
-        background: ""
+        background: '""',
+        color: ''
     };
 
     const save = () => {
