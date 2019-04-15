@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import drop from '../pictures/page-1-copy-24@3x.png';
 import useForceRender from '../helpers/customHooks';
 
+import squares from '../pictures/squares.svg';
+import plus from '../pictures/plus.svg';
+import trash from '../pictures/trash.svg';
 
 const getBase64 = (element, cb) => {
 
@@ -24,9 +27,9 @@ const Options = ({ deleteOne, copyOne, options, optionsState, toggle }) => {
 
     return (
         <div className="options--container" onClick={toggle}>
-            <button className="duplicate" onClick={copyOne}>Duplicate</button>
-            <button className="moreOptions" onClick={options}>{optionsState ? "Less options" : "More options"}</button>
-            <button className="delete" onClick={deleteOne}>Delete</button>
+            <button className="duplicate" onClick={copyOne}><img src={squares} alt=''></img>Duplicate</button>
+            <button className="moreOptions" onClick={options}><img src={plus} alt=''/>{optionsState ? "Less options" : "More options"}</button>
+            <button className="delete" onClick={deleteOne}><img src={trash} alt=''/> Delete</button>
         </div>
     )
 }
@@ -34,16 +37,17 @@ const Options = ({ deleteOne, copyOne, options, optionsState, toggle }) => {
 const Background = ({ image, getImage, ...props }) => {
 
     return (
-        <div className="modular--background">
-            {props.children}
-            <div className="chip"></div>
-            <div className="img--div"><img src={image} alt=""></img></div>
-            <label htmlFor="file"><div></div>Upload image</label>
-            <input type="file" id="file" onChange={getImage} />
-        </div>
+        <>
+            <div className="modular--background">
+                {props.children}
+                <div className="chip"></div>
+                <div className="img--div"><img src={image} alt=""></img></div>
+                <label htmlFor="file"><div></div>Upload image</label>
+                <input type="file" id="file" onChange={getImage} />
+            </div>
+        </>
     )
 }
-
 
 
 const Tile = ({ data, deleteTile, copyTile }) => {
@@ -53,15 +57,18 @@ const Tile = ({ data, deleteTile, copyTile }) => {
     const [slider, setSlider] = useState(data.positive);
     const [btnText, setBtnText] = useState(data.btnText);
     const [btnOption, setBtnOption] = useState(data.btnOption);
-    const [btnLink, setBtnlink] = useState();
+    const [btnLink, setBtnlink] = useState(data.btnLink);
+    const [color, setColor] = useState(data.color);
     const [img, setImg] = useState(null);
-    const [color, setColor] = useState();
 
     const forceRender = useForceRender();
 
     const [optionsToggle, setOptionsToggle] = useState();
     const [backToggle, setBackToggle] = useState();
     const [moreOptions, setMoreOptions] = useState();
+
+   
+    const check = {backgroundSize: '20px'};
 
     useEffect(() => {
         getBase64(img, res => { data.background = res; forceRender() });
@@ -92,21 +99,21 @@ const Tile = ({ data, deleteTile, copyTile }) => {
 
                     {
                         backToggle &&
-                        <React.Fragment>
-                            <div className="backdrop" onClick={() => setBackToggle(!backToggle)} />
+                        <>
+                            <div className="backdrop__zeindex" onClick={() => setBackToggle(!backToggle)} />
                             <Background getImage={e => setImg(e.target)} image={data.background}>
                                 <div className="colors">
-                                    <button className="purple" onClick={() => setColor('#9700fd')}></button>
-                                    <button className="blue" onClick={() => setColor('#60cefe')}></button>
-                                    <button className="green" onClick={() => setColor('#49e5a5')}></button>
-                                    <button className="white" onClick={() => setColor('#ffffff')}></button>
-                                    <button className="black" onClick={() => setColor('#000000')}></button>
-                                    <button className="darkgGray" onClick={() => setColor('#808080')}></button>
-                                    <button className="lightGray" onClick={() => setColor('#dadada')}></button>
-                                    <button className="lightestGgray" onClick={() => setColor('#f5f5f5')}></button>
+                                    <button style={color === '#9700fd' ? check : null} className="purple" onClick={() => { setColor('#9700fd') }}></button>
+                                    <button style={color === '#60cefe' ? check : null} className="blue" onClick={() => setColor('#60cefe')}></button>
+                                    <button style={color === '#49e5a5' ? check : null} className="green" onClick={() => setColor('#49e5a5')}></button>
+                                    <button style={color === '#ffffff' ? check : null} className="white" onClick={() => setColor('#ffffff')}></button>
+                                    <button style={color === '#000000' ? check : null} className="black" onClick={() => setColor('#000000')}></button>
+                                    <button style={color === '#808080' ? check : null} className="darkGray" onClick={() => setColor('#808080')}></button>
+                                    <button style={color === '#dadada' ? check : null} className="lightGray" onClick={() => setColor('#dadada')}></button>
+                                    <button style={color === '#f5f5f5' ? check : null} className="lightestGgrey" onClick={() => setColor('#f5f5f5')}></button>
                                 </div>
                             </Background>
-                        </React.Fragment>
+                        </>
                     }
                 </div>
                 <div className="options">
@@ -114,14 +121,13 @@ const Tile = ({ data, deleteTile, copyTile }) => {
                     {
                         optionsToggle &&
                         <>
-                            <div className="backdrop" onClick={() => setOptionsToggle(!optionsToggle)}></div>
+                            <div className="backdrop" onClick={() => setOptionsToggle(!optionsToggle)} />
                             <Options
                                 toggle={() => setOptionsToggle(!optionsToggle)}
                                 deleteOne={deleteTile}
                                 copyOne={copyTile}
                                 options={() => setMoreOptions(!moreOptions)}
-                                optionsState={moreOptions}
-                            />
+                                optionsState={moreOptions} />
                         </>
                     }
                 </div>

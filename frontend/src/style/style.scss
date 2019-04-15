@@ -10,6 +10,15 @@ $break-medium: 950px;
 $playFair: "Playfair Display", serif;
 $montserrat: "Montserrat", sans-serif;
 
+.backdrop__zeindex {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(170, 170, 170, 0);
+}
 .backdrop {
   position: fixed;
   top: 0;
@@ -72,6 +81,10 @@ body {
           outline: none;
           font-family: $montserrat;
           transition: all 100ms ease-in-out;
+          &:hover{
+            background-color: $purple;
+            color: white;
+          }
         }
       }
       .header--animation {
@@ -124,10 +137,10 @@ body {
             background-color: $purple;
             border-radius: 50%;
             color: $white;
-            font-size: 25px;
+            font-size: 23px;
             font-weight: 500;
             text-align: center;
-            line-height: 20px;
+            line-height: 19px;
             margin-right: 6px;
           }
         }
@@ -247,6 +260,7 @@ body {
       flex-flow: row nowrap;
       align-items: center;
       button {
+        cursor: pointer;
         width: 36px;
         height: 20px;
         margin: auto;
@@ -337,54 +351,26 @@ body {
           text-align: start;
           transition: all 100ms ease-in-out;
           outline: none;
+          img {
+            margin-right: 10px;
+            filter: grayscale(100%);
+          }
           &:hover {
             background-color: $purple;
+            fill: white;
+            color: $white;
+            img {
+              
+            }
           }
           &.duplicate {
             display: flex;
-            &::before {
-              content: ".";
-              margin-right: 10px;
-              height: 100%;
-              width: 14px;
-              background-image: url("../pictures/combined-shape@3x.png");
-              background-repeat: no-repeat;
-              background-position: center;
-              background-size: 14px;
-              color: $purple;
-              filter: grayscale(100%);
-            }
           }
           &.delete {
             display: flex;
-            &::before {
-              content: ".";
-              margin-right: 10px;
-              height: 100%;
-              width: 14px;
-              background-image: url("../pictures/mask-copy-4@3x.png");
-              background-repeat: no-repeat;
-              background-position: center;
-              background-size: 14px;
-              color: $purple;
-              filter: grayscale(100%);
-            }
           }
           &.moreOptions {
             display: flex;
-            &::before {
-              content: ".";
-              text-align: center;
-              margin-right: 10px;
-              height: 100%;
-              width: 14px;
-              filter: url("../pictures/plus@3x.png");
-              background-image: url("../pictures/plus@3x.png");
-              background-repeat: no-repeat;
-              background-position: center;
-              background-size: 14px;
-              color: $purple;
-            }
           }
         }
       }
@@ -393,11 +379,11 @@ body {
 
   .modular--background {
     width: 280px;
-    z-index: 1;
+    z-index: 2;
     height: 180px;
     position: absolute;
     right: -110px;
-    top: 49px;
+    top: 52px;
     background-color: #ffffff;
     margin: auto;
     display: -webkit-flex;
@@ -461,6 +447,10 @@ body {
         padding: 0;
         outline: none;
         margin: 5px;
+        background-image: url("../pictures/check-soft@2x.png");
+        background-size: 0px;
+        background-repeat: no-repeat;
+        background-position: center;
         &.purple {
           background-color: #9700fd;
         }
@@ -482,7 +472,7 @@ body {
         &.lightGray {
           background-color: #dadada;
         }
-        &.lightestGray {
+        &.lightestGgrey {
           background-color: #f5f5f5;
         }
       }

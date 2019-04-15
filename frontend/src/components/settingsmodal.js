@@ -5,20 +5,20 @@ import useForceRender from '../helpers/customHooks';
 const Settings = ({ toggle }) => {
 
     const forceRender = useForceRender();
-
+    let random = Math.random().toString(36).substr(2, 16);
 
     const [data, setData] = useState(
         {
             increment: 0,
-            size: '',
-            animation: '',
-            time: '',
+            size: 'l',
+            animation: 'Fortine wheel',
+            time: 2,
             tiles: []
         }
     );
 
     const newTile = {
-        id: Math.random(),
+        id: random,
         subHeader: '',
         heading: '',
         positive: true,
@@ -34,10 +34,17 @@ const Settings = ({ toggle }) => {
     }
 
     useEffect(() => {
-        if (data === null) {
-            return;
-        }
         let dataGet = JSON.parse(localStorage.getItem('data'));
+        if (dataGet === null) {
+            dataGet = {
+                increment: 0,
+                size: 'l',
+                animation: 'Fortine wheel',
+                time: 2,
+                tiles: []
+            }
+
+        }
         setData(dataGet);
     }, []);
 
@@ -59,7 +66,7 @@ const Settings = ({ toggle }) => {
         let item = newData[0];
 
         let tile = {
-            id: Math.random(),
+            id: random,
             subHeader: item.subHeader,
             heading: item.heading,
             positive: item.positive,
@@ -74,6 +81,9 @@ const Settings = ({ toggle }) => {
     }
 
     const renderTiles = () => {
+        if (data == null) {
+            return;
+        }
         return data.tiles.map(item => {
             data.increment++;
             return (
@@ -93,9 +103,15 @@ const Settings = ({ toggle }) => {
                 <div className="header--options">
                     <div className="header--sizes">
                         <p>Size</p>
-                        <button onClick={() => { forceRender(); data.size = 's' }} style={data.size === 's' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>S</button>
-                        <button onClick={() => { forceRender(); data.size = 'm' }} style={data.size === 'm' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>M</button>
-                        <button onClick={() => { forceRender(); data.size = 'l' }} style={data.size === 'l' ? { backgroundColor: '#9700fd' } : { backgroundColor: '#ffffff' }}>L</button>
+                        <button 
+                        onClick={() => { forceRender(); data.size = 's' }} 
+                        style={data.size === 's' ? { backgroundColor: '#9700fd', color: 'white' } : null}>S</button>
+                        <button 
+                        onClick={() => { forceRender(); data.size = 'm' }} 
+                        style={data.size === 'm' ? { backgroundColor: '#9700fd', color: 'white' } : null}>M</button>
+                        <button 
+                        onClick={() => { forceRender(); data.size = 'l' }} 
+                        style={data.size === 'l' ? { backgroundColor: '#9700fd', color: 'white' } : null}>L</button>
                     </div>
                     <div className="header--animation">
                         <p>Animations</p>
@@ -114,7 +130,8 @@ const Settings = ({ toggle }) => {
             <div className="settings--body">
                 <div className="body-add">
                     Tiles
-                    <div className="container--add"><button onClick={() => { data.tiles.push(newTile); forceRender() }}><div className="plus">+</div>Add Tile</button></div>
+                    <div className="container--add"><button onClick={() => { data.tiles.push(newTile); forceRender() }}>
+                    <div className="plus">+</div>Add Tile</button></div>
                 </div>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>

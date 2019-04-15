@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>4061783A-44CE-4281-A8D9-5C97915C8B14</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <polygon id="path-1" points="11.0150104 12.4125854 8.00249719 9.40122301 4.98498961 12.4165789 3.58356621 11.0158551 6.60007492 7.99950081 3.58356621 4.98414493 4.98498961 3.58342111 8.00249719 6.59877699 11.0150104 3.58741462 12.4164338 4.98813845 9.40392059 8.00049919 12.4164338 11.0118616"></polygon>
+    </defs>
+    <g id="-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon/Small/plus">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Error-Icon" fill="#000000" transform="translate(8.000000, 8.000000) rotate(45.000000) translate(-8.000000, -8.000000) " xlink:href="#path-1"></use>
+            <g id="UI/Color/Flat/Black" mask="url(#mask-2)" fill="#000000">
+                <g transform="translate(-41.621094, -26.203125)" id="Base">
+                    <rect x="0" y="0" width="86" height="86"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
