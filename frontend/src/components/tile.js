@@ -87,8 +87,10 @@ const Tile = ({ data, deleteTile, copyTile }) => {
                     <input type="text" value={head} onChange={e => { data.heading = e.target.value; setHead(e.target.value) }} />
                 </div>
                 <div className="positive">
-                    <button onClick={() => { data.positive = !slider; setSlider(!slider) }} style={slider ? { backgroundColor: '#dadada' } : { backgroundColor: '#9700fd' }}>
-                        <div className="slider" style={slider ? { float: 'left' } : { float: 'right' }}></div>
+                    <button 
+                    onClick={() => { data.positive = !slider; setSlider(!slider) }} 
+                    style={slider ? { backgroundColor: '#dadada' } : { backgroundColor: '#9700fd' }}>
+                        <div className="slider" style={slider ? { transform:'translate(-100%,0)' } : { float: 'right' }}></div>
                     </button>
                 </div>
                 <div className="background">

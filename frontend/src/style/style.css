@@ -358,6 +358,10 @@ body {
   margin-right: 2px;
   float: right;
   border-radius: 2px;
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+  transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
 }
 
 .list .tile .background {
@@ -578,6 +582,8 @@ body {
   background-size: 0px;
   background-repeat: no-repeat;
   background-position: center;
+  -webkit-transition: all .1s ease-in;
+  transition: all .1s ease-in;
 }
 
 .list .modular--background .colors button.purple {

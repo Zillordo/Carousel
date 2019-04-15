@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Tile from './tile';
 import useForceRender from '../helpers/customHooks';
+import RLDD from 'react-list-drag-and-drop/lib/RLDD';
 
 const Settings = ({ toggle }) => {
 

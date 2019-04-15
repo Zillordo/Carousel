@@ -81,7 +81,7 @@ body {
           outline: none;
           font-family: $montserrat;
           transition: all 100ms ease-in-out;
-          &:hover{
+          &:hover {
             background-color: $purple;
             color: white;
           }
@@ -278,6 +278,7 @@ body {
           margin-right: 2px;
           float: right;
           border-radius: 2px;
+          transition: transform .2s ease-in-out;
         }
       }
     }
@@ -359,9 +360,6 @@ body {
             background-color: $purple;
             fill: white;
             color: $white;
-            img {
-              
-            }
           }
           &.duplicate {
             display: flex;
@@ -451,6 +449,7 @@ body {
         background-size: 0px;
         background-repeat: no-repeat;
         background-position: center;
+        transition: all .1s ease-in;
         &.purple {
           background-color: #9700fd;
         }
