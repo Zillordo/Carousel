@@ -508,6 +508,8 @@ body {
           flex-flow: row wrap;
   -webkit-box-shadow: 0 2px 12px 0 rgba(159, 167, 187, 0.22), 0 8px 12px 0 rgba(0, 0, 0, 0.15);
           box-shadow: 0 2px 12px 0 rgba(159, 167, 187, 0.22), 0 8px 12px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
 }
 
 .list .modular--background .chip {
