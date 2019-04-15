@@ -20,7 +20,16 @@ const getBase64 = (element, cb) => {
 }
 
 
+const Options = ({ deleteOne, copyOne, options, optionsState, toggle }) => {
 
+    return (
+        <div className="options--container" onClick={toggle}>
+            <button className="duplicate" onClick={copyOne}>Duplicate</button>
+            <button className="moreOptions" onClick={options}>{optionsState ? "Less options" : "More options"}</button>
+            <button className="delete" onClick={deleteOne}>Delete</button>
+        </div>
+    )
+}
 
 const Background = ({ image, getImage, ...props }) => {
 
@@ -35,23 +44,28 @@ const Background = ({ image, getImage, ...props }) => {
     )
 }
 
-const Tile = ({ data, id }) => {
+
+
+const Tile = ({ data, deleteTile, copyTile }) => {
 
     const [subHead, setSubeHead] = useState(data.subHeader);
     const [head, setHead] = useState(data.heading);
     const [slider, setSlider] = useState(data.positive);
+    const [btnText, setBtnText] = useState(data.btnText);
+    const [btnOption, setBtnOption] = useState(data.btnOption);
+    const [btnLink, setBtnlink] = useState();
     const [img, setImg] = useState(null);
     const [color, setColor] = useState();
+
     const forceRender = useForceRender();
 
+    const [optionsToggle, setOptionsToggle] = useState();
     const [backToggle, setBackToggle] = useState();
+    const [moreOptions, setMoreOptions] = useState();
 
     useEffect(() => {
-        forceRender();
-        getBase64(img, res => {
-            data.background = res;
-        });
-    })
+        getBase64(img, res => { data.background = res; forceRender() });
+    }, [img])
 
     data.color = color;
 
@@ -79,7 +93,7 @@ const Tile = ({ data, id }) => {
                     {
                         backToggle &&
                         <React.Fragment>
-                            <div className="backdrop" onClick={() => setBackToggle(!backToggle)}></div>
+                            <div className="backdrop" onClick={() => setBackToggle(!backToggle)} />
                             <Background getImage={e => setImg(e.target)} image={data.background}>
                                 <div className="colors">
                                     <button className="purple" onClick={() => setColor('#9700fd')}></button>
@@ -95,7 +109,50 @@ const Tile = ({ data, id }) => {
                         </React.Fragment>
                     }
                 </div>
+                <div className="options">
+                    <button className="options--toggle" onClick={() => setOptionsToggle(!optionsToggle)}>...</button>
+                    {
+                        optionsToggle &&
+                        <>
+                            <div className="backdrop" onClick={() => setOptionsToggle(!optionsToggle)}></div>
+                            <Options
+                                toggle={() => setOptionsToggle(!optionsToggle)}
+                                deleteOne={deleteTile}
+                                copyOne={copyTile}
+                                options={() => setMoreOptions(!moreOptions)}
+                                optionsState={moreOptions}
+                            />
+                        </>
+                    }
+                </div>
             </div>
+            {
+                moreOptions &&
+                <div className="moreOptions">
+                    <div>
+                        <label htmlFor="btn-text">btn Text</label>
+                        <input className="btn-text" id="btn-text"
+                            value={btnText}
+                            onChange={e => { setBtnText(e.target.value); data.btnText = e.target.value }}>
+                        </input>
+                    </div>
+                    <div>
+                        <label htmlFor="btn-link">btn Link</label>
+                        <input className="btn-link" id="btn-link"
+                            value={btnLink}
+                            onChange={e => { setBtnlink(e.target.value); data.btnLink = e.target.value }}>
+                        </input>
+                    </div>
+                    <div>
+                        <select className="btn-select"
+                            value={btnOption}
+                            onChange={e => { setBtnOption(e.target.value); data.btnOption = e.target.value }}>
+                            <option value="New window">New window</option>
+                        </select>
+                    </div>
+
+                </div>
+            }
         </React.Fragment>
     )
 }

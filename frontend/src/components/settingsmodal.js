@@ -18,11 +18,15 @@ const Settings = ({ toggle }) => {
     );
 
     const newTile = {
+        id: Math.random(),
         subHeader: '',
         heading: '',
         positive: true,
-        background: '""',
-        color: ''
+        background: '',
+        color: '',
+        btnText: '',
+        btnLink: '',
+        btnOption: ''
     };
 
     const save = () => {
@@ -30,21 +34,55 @@ const Settings = ({ toggle }) => {
     }
 
     useEffect(() => {
+        if (data === null) {
+            return;
+        }
         let dataGet = JSON.parse(localStorage.getItem('data'));
         setData(dataGet);
     }, []);
 
 
+    const deleteTile = (id) => {
+        let newTiles = data.tiles.filter(tileId => {
+            return tileId.id !== id;
+        });
+        forceRender();
+
+        setData({ tiles: newTiles, increment: data.increment, size: data.size, animation: data.animation, time: data.time });
+    }
+
+    const copyTile = (id) => {
+        let newData = data.tiles.filter(tileId => {
+            return tileId.id === id;
+        });
+
+        let item = newData[0];
+
+        let tile = {
+            id: Math.random(),
+            subHeader: item.subHeader,
+            heading: item.heading,
+            positive: item.positive,
+            background: item.background,
+            color: item.color,
+            btnText: item.btnText,
+            btnLink: item.btnLink,
+            btnOption: item.btnOption
+        }
+        data.tiles.push(tile);
+        forceRender();
+    }
 
     const renderTiles = () => {
         return data.tiles.map(item => {
             data.increment++;
             return (
-                <Tile key={data.increment} data={item} />
+                <Tile key={data.increment} data={item} deleteTile={() => deleteTile(item.id)} copyTile={() => copyTile(item.id)} />
             )
         }
         );
     }
+
 
 
     return (

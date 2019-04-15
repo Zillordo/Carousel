@@ -16,10 +16,9 @@ body {
 
 .settings {
   margin: auto;
-  margin-top: 50px;
   position: relative;
-  width: 850px;
-  height: auto;
+  margin-top: 50px;
+  max-width: 850px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.05);
           box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.05);
@@ -47,7 +46,7 @@ body {
 
 .settings--header {
   padding: 20px;
-  height: 185px;
+  margin-bottom: 30px;
   background-color: #ffffff;
 }
 
@@ -88,7 +87,7 @@ body {
 .settings--header .header--options .header--animation select {
   margin-right: 15px;
   height: 40px;
-  width: 216px;
+  width: 240px;
   border-color: #dadada;
   outline: none;
 }
@@ -164,6 +163,7 @@ body {
 
 .settings--body .body--tiles {
   border: 1px solid #dadada;
+  min-height: 95px;
   display: -ms-grid;
   display: grid;
   margin-bottom: 20px;
@@ -237,7 +237,7 @@ body {
   width: 100%;
   -ms-grid-columns: 20% 50% 10% 12% 8%;
       grid-template-columns: 20% 50% 10% 12% 8%;
-  border: 0.25px solid #dadada;
+  border-top: 0.25px solid #dadada;
   -ms-grid-column: 5;
       grid-column-start: 5;
   grid-column-end: 1;
@@ -368,6 +368,7 @@ body {
 }
 
 .list .tile .background button {
+  cursor: pointer;
   margin: auto;
   margin-left: 40%;
   width: 53px;
@@ -385,6 +386,125 @@ body {
           transform: rotate(180deg);
 }
 
+.list .tile .options {
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.list .tile .options--toggle {
+  border: none;
+  width: 80%;
+  height: 80%;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  margin: auto;
+  text-align: center;
+  font-size: 20px;
+  color: #a0a0a0;
+  background-color: #ffffff;
+}
+
+.list .tile .options .options--container {
+  width: 160px;
+  height: 111px;
+  z-index: 1;
+  position: absolute;
+  right: -60px;
+  top: 35px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(159, 167, 187, 0.22), 0 8px 12px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 2px 12px 0 rgba(159, 167, 187, 0.22), 0 8px 12px 0 rgba(0, 0, 0, 0.15);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.list .tile .options .options--container button {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  text-align: start;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+  outline: none;
+}
+
+.list .tile .options .options--container button:hover {
+  background-color: #9700fd;
+}
+
+.list .tile .options .options--container button.duplicate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.list .tile .options .options--container button.duplicate::before {
+  content: ".";
+  margin-right: 10px;
+  height: 100%;
+  width: 14px;
+  background-image: url("../pictures/combined-shape@3x.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px;
+  color: #9700fd;
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+}
+
+.list .tile .options .options--container button.delete {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.list .tile .options .options--container button.delete::before {
+  content: ".";
+  margin-right: 10px;
+  height: 100%;
+  width: 14px;
+  background-image: url("../pictures/mask-copy-4@3x.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px;
+  color: #9700fd;
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+}
+
+.list .tile .options .options--container button.moreOptions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.list .tile .options .options--container button.moreOptions::before {
+  content: ".";
+  text-align: center;
+  margin-right: 10px;
+  height: 100%;
+  width: 14px;
+  -webkit-filter: url("../pictures/plus@3x.png");
+          filter: url("../pictures/plus@3x.png");
+  background-image: url("../pictures/plus@3x.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px;
+  color: #9700fd;
+}
+
 .list .modular--background {
   width: 280px;
   z-index: 1;
@@ -394,7 +514,6 @@ body {
   top: 49px;
   background-color: #ffffff;
   margin: auto;
-  border: 1px solid #dadada;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -506,5 +625,58 @@ body {
 
 .list .modular--background .colors button.lightestGray {
   background-color: #f5f5f5;
+}
+
+.list .moreOptions {
+  height: 80px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 21% 49% 30%;
+      grid-template-columns: 21% 49% 30%;
+}
+
+.list .moreOptions div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  margin-left: 20px;
+}
+
+.list .moreOptions input {
+  height: 30px;
+  border: 1px solid #dadada;
+  outline: none;
+  padding: 0;
+  margin-top: 5px;
+  padding-left: 20px;
+  font-family: "Montserrat", sans-serif;
+  padding-left: 20px;
+}
+
+.list .moreOptions .btn-text {
+  width: 78%;
+}
+
+.list .moreOptions select {
+  margin-left: 15px;
+  height: 32px;
+  width: 140px;
+  border-color: #dadada;
+  outline: none;
+  margin-top: 25px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.list .moreOptions label {
+  font-size: 16px;
+  font-weight: 500;
 }
 /*# sourceMappingURL=style.css.map */
