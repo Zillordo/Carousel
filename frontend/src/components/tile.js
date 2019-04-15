@@ -27,7 +27,7 @@ const Options = ({ deleteOne, copyOne, options, optionsState, toggle }) => {
 
     return (
         <div className="options--container" onClick={toggle}>
-            <button className="duplicate" onClick={copyOne}><img src={squares} alt=''></img>Duplicate</button>
+            <button className="duplicate" onClick={copyOne}><img src={squares} alt=''/>Duplicate</button>
             <button className="moreOptions" onClick={options}><img src={plus} alt=''/>{optionsState ? "Less options" : "More options"}</button>
             <button className="delete" onClick={deleteOne}><img src={trash} alt=''/> Delete</button>
         </div>

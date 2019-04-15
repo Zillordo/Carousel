@@ -358,10 +358,10 @@ body {
   margin-right: 2px;
   float: right;
   border-radius: 2px;
-  -webkit-transition: -webkit-transform .2s ease-in-out;
-  transition: -webkit-transform .2s ease-in-out;
-  transition: transform .2s ease-in-out;
-  transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
 .list .tile .background {
@@ -462,14 +462,20 @@ body {
 
 .list .tile .options .options--container button img {
   margin-right: 10px;
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  fill: #9700fd;
+  color: #9700fd;
+  stroke: #9700fd;
 }
 
 .list .tile .options .options--container button:hover {
   background-color: #9700fd;
   fill: white;
   color: #ffffff;
+}
+
+.list .tile .options .options--container button:hover img {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
 }
 
 .list .tile .options .options--container button.duplicate {
@@ -584,8 +590,8 @@ body {
   background-size: 0px;
   background-repeat: no-repeat;
   background-position: center;
-  -webkit-transition: all .1s ease-in;
-  transition: all .1s ease-in;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 .list .modular--background .colors button.purple {

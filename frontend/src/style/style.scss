@@ -278,7 +278,7 @@ body {
           margin-right: 2px;
           float: right;
           border-radius: 2px;
-          transition: transform .2s ease-in-out;
+          transition: transform 0.2s ease-in-out;
         }
       }
     }
@@ -354,12 +354,17 @@ body {
           outline: none;
           img {
             margin-right: 10px;
-            filter: grayscale(100%);
+            fill: $purple;
+            color: $purple;
+            stroke: $purple;
           }
           &:hover {
             background-color: $purple;
             fill: white;
             color: $white;
+            img {
+              filter: grayscale(100%);
+            }
           }
           &.duplicate {
             display: flex;
@@ -450,7 +455,7 @@ body {
         background-size: 0px;
         background-repeat: no-repeat;
         background-position: center;
-        transition: all .1s ease-in;
+        transition: all 0.1s ease-in;
         &.purple {
           background-color: #9700fd;
         }
