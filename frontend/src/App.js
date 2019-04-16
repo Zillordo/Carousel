@@ -20,13 +20,14 @@ const Slider = ({ data, size }) => {
       else {
         return <div></div>;
       }
-    }
+    };
+
+    let img = {
+      background: `url(${item.background}) no-repeat center center`,
+      backgroundSize: 'cover'
+    };
 
     if (!item.positive && item.background.trim().length !== 0) {
-      let img = {
-        background: `url(${item.background}) no-repeat center center`,
-        backgroundSize: 'cover'
-      }
 
       return (
         <div key={item.id} className="carousel" style={{ ...img, ...size }}>
@@ -36,10 +37,10 @@ const Slider = ({ data, size }) => {
           </div>
           <Link />
         </div>
-      )
+      );
     }
     return null;
-  })
+  });
 }
 
 const App = () => {
@@ -60,17 +61,18 @@ const App = () => {
 
     if (dataGet === null) {
       dataGet = {...data}
-    }
+    };
 
     let newData = dataGet.tiles.filter(item => item.positive === false);
+    
     if (newData.length > 1) {
       if (newData !== null) {
         let item = newData[0];
         let tile = JSON.parse(JSON.stringify(item));
         tile.id = Math.random().toString(36).substr(2, 16);
         dataGet.tiles.push(tile);
-      }
-    }
+      };
+    };
 
 
     setData(dataGet);
