@@ -15,10 +15,19 @@ $montserrat: "Montserrat", sans-serif;
   width: 100%;
   height: 100vh;
   .settingsbtn{
-    background-color: $white;
-    border: 1px solid $gray;
-    float: right;
+    border: none;
+    position: fixed;
+    top: 0;
+    right: 0;
     margin: 10px;
+    height: 50px;
+    width: 50px;
+    outline: none;
+    background-color: rgba(170, 170, 170, 0);
+    background-image: url('../pictures/settings.png');
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 .backdrop__zeindex {
@@ -31,6 +40,7 @@ $montserrat: "Montserrat", sans-serif;
   background-color: rgba(170, 170, 170, 0);
 }
 .backdrop {
+  overflow: auto;
   position: fixed;
   top: 0;
   left: 0;
@@ -48,7 +58,8 @@ body {
 .settings {
   margin: auto;
   position: relative;
-  top: -350px;
+  top: 0;
+  z-index: 1;
   margin-top: 50px;
   max-width: 850px;
   background-color: $white;

@@ -67,35 +67,46 @@ const App = () => {
         tiles: []
       }
     }
-    if (dataGet.tiles.length > 1) {
-      let newData = dataGet.tiles.map(item => {
-        if (item.positive === false) {
-          return item
+
+    let newData = dataGet.tiles.filter(item => item.positive === false);
+    if (newData.length > 1) {
+      if (newData !== null) {
+        let item = newData[0];
+        console.log(item)
+        let tile = {
+          id: Math.random().toString(36).substr(2, 16),
+          subHeader: item.subHeader,
+          heading: item.heading,
+          positive: item.positive,
+          background: item.background,
+          color: item.color,
+          btnText: item.btnText,
+          btnLink: item.btnLink,
+          btnOption: item.btnOption
         }
-        return null;
-      })
-
-      let item = newData[0];
-
-      let tile = {
-        id: Math.random().toString(36).substr(2, 16),
-        subHeader: item.subHeader,
-        heading: item.heading,
-        positive: item.positive,
-        background: item.background,
-        color: item.color,
-        btnText: item.btnText,
-        btnLink: item.btnLink,
-        btnOption: item.btnOption
+        dataGet.tiles.push(tile);
       }
-      dataGet.tiles.push(tile);
     }
+
+
     setData(dataGet);
   }
 
   useEffect(() => {
     getData();
   }, []);
+
+  const smoothCarouselLeft = () => {
+    let element = document.getElementById('header-carousel');
+    if (element.scrollLeft === 0) {
+      element.scroll({ top: 0, left: element.scrollWidth - element.clientWidth });
+      element.scroll({ top: 0, left: element.scrollLeft - element.clientWidth, behavior: 'smooth' });
+    }
+    else {
+      element.scroll({ top: 0, left: element.scrollLeft - element.clientWidth, behavior: 'smooth' });
+    }
+  }
+
 
   const smoothCarouselRight = () => {
     let element = document.getElementById('header-carousel');
@@ -129,12 +140,13 @@ const App = () => {
   return (
     <>
       <div className='app'>
-        <button className='settingsbtn' onClick={() => setToggle(() => !toggle)}>Settings</button>
         <div className="carousel--container" id="header-carousel">
           <Slider data={data.tiles} size={size(data.size)} />
         </div>
-        {toggle && <Backdrop />}
-        {toggle && <Settings toggle={() => { setToggle(!toggle); getData() }} />}
+        <button className='settingsbtn' onClick={() => setToggle(() => !toggle)}></button>
+        {toggle && <Backdrop>
+          <Settings toggle={() => { setToggle(!toggle); getData() }} />
+        </Backdrop>}
       </div>
     </>
   );
