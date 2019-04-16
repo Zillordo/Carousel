@@ -20,15 +20,14 @@ $montserrat: "Montserrat", sans-serif;
     top: 0;
     right: 0;
     margin: 10px;
-    height: 50px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
     outline: none;
     background-color: rgba(170, 170, 170, 0);
     background-image: url('../pictures/settings.png');
-    background-size: 30px;
+    background-size: 35px;
     background-repeat: no-repeat;
     background-position: center;
-    filter: invert(100%);
   }
 }
 .backdrop__zeindex {
@@ -550,6 +549,7 @@ body {
   display: flex;
   flex-flow: row;
   overflow: hidden;
+  background-color: black;
   .carousel {
     width: 100%;
     background-size: cover;

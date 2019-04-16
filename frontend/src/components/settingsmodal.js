@@ -35,18 +35,18 @@ const Settings = ({ toggle }) => {
     }
 
     useEffect(() => {
-        let dataGet = JSON.parse(localStorage.getItem('data'));
-        if (dataGet === null) {
-            dataGet = {
-                increment: 0,
-                size: '',
-                animation: 'left',
-                time: 2,
-                tiles: []
-            }
+        setData(JSON.parse(localStorage.getItem('data')));
+        // if (data === null) {
+        //     dataGet = {
+        //         increment: 0,
+        //         size: '',
+        //         animation: 'left',
+        //         time: 2,
+        //         tiles: []
+        //     }
 
-        }
-        setData(dataGet);
+        // }
+        // setData(dataGet);
     }, []);
 
 
