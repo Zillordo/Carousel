@@ -155,7 +155,8 @@ const Tile = ({ data, deleteTile, copyTile }) => {
                         <select className="btn-select"
                             value={btnOption}
                             onChange={e => { setBtnOption(e.target.value); data.btnOption = e.target.value }}>
-                            <option value="New window">New window</option>
+                            <option value="_blank">New tab</option>
+                            <option value="null">Same window</option>
                         </select>
                     </div>
 

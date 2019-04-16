@@ -11,7 +11,7 @@
             <mask id="mask-2" fill="none">
                 <use xlink:href="#path-1"></use>
             </mask>
-            <use id="Error-Icon" fill="#9700fd" transform="translate(8.000000, 8.000000) rotate(45.000000) translate(-8.000000, -8.000000) " xlink:href="#path-1"></use>
+            <use id="Error-Icon" fill="#000000" transform="translate(8.000000, 8.000000) rotate(45.000000) translate(-8.000000, -8.000000) " xlink:href="#path-1"></use>
             <g id="UI/Color/Flat/Black" mask="url(#mask-2)" fill="none">
                 <g transform="translate(-41.621094, -26.203125)" id="Base">
                     <rect x="0" y="0" width="86" height="86"></rect>

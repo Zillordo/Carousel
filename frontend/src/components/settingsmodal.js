@@ -11,7 +11,7 @@ const Settings = ({ toggle }) => {
     const [data, setData] = useState(
         {
             increment: 0,
-            size: 'l',
+            size: '',
             animation: 'Fortine wheel',
             time: 2,
             tiles: []
@@ -27,7 +27,7 @@ const Settings = ({ toggle }) => {
         color: '',
         btnText: '',
         btnLink: '',
-        btnOption: ''
+        btnOption: '_blank'
     };
 
     const save = () => {
@@ -39,7 +39,7 @@ const Settings = ({ toggle }) => {
         if (dataGet === null) {
             dataGet = {
                 increment: 0,
-                size: 'l',
+                size: '',
                 animation: 'Fortine wheel',
                 time: 2,
                 tiles: []
@@ -142,7 +142,7 @@ const Settings = ({ toggle }) => {
                 </div>
             </div>
             <div className="settings--footer">
-                <button onClick={() => { save(); toggle() }}>SAVE</button>
+                <button onClick={() => { save(); toggle()}}>SAVE</button>
             </div>
         </div>
     )

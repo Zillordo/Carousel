@@ -1,9 +1,26 @@
+.app {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.app .settingsbtn {
+  background-color: #ffffff;
+  border: 1px solid #dadada;
+}
+
 .backdrop__zeindex {
   z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: rgba(170, 170, 170, 0);
 }
@@ -12,7 +29,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: rgba(170, 170, 170, 0);
 }
@@ -27,6 +44,7 @@ body {
 .settings {
   margin: auto;
   position: relative;
+  top: -350px;
   margin-top: 50px;
   max-width: 850px;
   background-color: #ffffff;
@@ -462,20 +480,16 @@ body {
 
 .list .tile .options .options--container button img {
   margin-right: 10px;
-  fill: #9700fd;
-  color: #9700fd;
-  stroke: #9700fd;
 }
 
 .list .tile .options .options--container button:hover {
   background-color: #9700fd;
-  fill: white;
   color: #ffffff;
 }
 
 .list .tile .options .options--container button:hover img {
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
 }
 
 .list .tile .options .options--container button.duplicate {
@@ -677,5 +691,59 @@ body {
 .list .moreOptions label {
   font-size: 16px;
   font-weight: 500;
+}
+
+.carousel--container {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  overflow: hidden;
+}
+
+.carousel--container .carousel {
+  width: 100%;
+  background-size: cover;
+  text-align: left;
+  font-family: "Playfair Display", serif;
+}
+
+.carousel--container .carousel h1 {
+  font-size: 40px;
+  margin: 100px;
+  margin-bottom: 0;
+  margin-top: 90px;
+  left: 0;
+}
+
+.carousel--container .carousel h3 {
+  margin-left: 100px;
+  margin-top: 0;
+  font-size: 25px;
+}
+
+.carousel--container .carousel .link {
+  width: 160px;
+  height: 38px;
+  background-color: #f5f5f5;
+  text-align: center;
+  margin-left: 100px;
+  line-height: 35px;
+}
+
+.carousel--container .carousel .link a {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-stretch: normal;
+  color: #000000;
+  background-color: #f5f5f5;
+  border: none;
+  outline: none;
+  text-decoration: none;
 }
 /*# sourceMappingURL=style.css.map */
