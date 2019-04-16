@@ -59,13 +59,7 @@ const App = () => {
     let dataGet = JSON.parse(localStorage.getItem('data'));
 
     if (dataGet === null) {
-      dataGet = {
-        increment: 0,
-        size: 'l',
-        animation: 'right',
-        time: 2,
-        tiles: []
-      }
+      dataGet = {...data}
     }
 
     let newData = dataGet.tiles.filter(item => item.positive === false);
