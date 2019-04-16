@@ -17,6 +17,8 @@
   background-size: 30px;
   background-repeat: no-repeat;
   background-position: center;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
 }
 
 .backdrop__zeindex {

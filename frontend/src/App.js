@@ -72,17 +72,8 @@ const App = () => {
     if (newData.length > 1) {
       if (newData !== null) {
         let item = newData[0];
-        let tile = {
-          id: Math.random().toString(36).substr(2, 16),
-          subHeader: item.subHeader,
-          heading: item.heading,
-          positive: item.positive,
-          background: item.background,
-          color: item.color,
-          btnText: item.btnText,
-          btnLink: item.btnLink,
-          btnOption: item.btnOption
-        }
+        let tile = JSON.parse(JSON.stringify(item));
+        tile.id = Math.random().toString(36).substr(2, 16);
         dataGet.tiles.push(tile);
       }
     }

@@ -66,17 +66,8 @@ const Settings = ({ toggle }) => {
 
         let item = newData[0];
 
-        let tile = {
-            id: random,
-            subHeader: item.subHeader,
-            heading: item.heading,
-            positive: item.positive,
-            background: item.background,
-            color: item.color,
-            btnText: item.btnText,
-            btnLink: item.btnLink,
-            btnOption: item.btnOption
-        }
+        let tile = JSON.parse(JSON.stringify(item));
+        tile.id = random;
         data.tiles.push(tile);
         forceRender();
     }
@@ -104,15 +95,15 @@ const Settings = ({ toggle }) => {
                 <div className="header--options">
                     <div className="header--sizes">
                         <p>Size</p>
-                        <button 
-                        onClick={() => { forceRender(); data.size = 's' }} 
-                        style={data.size === 's' ? { backgroundColor: '#9700fd', color: 'white' } : null}>S</button>
-                        <button 
-                        onClick={() => { forceRender(); data.size = 'm' }} 
-                        style={data.size === 'm' ? { backgroundColor: '#9700fd', color: 'white' } : null}>M</button>
-                        <button 
-                        onClick={() => { forceRender(); data.size = 'l' }} 
-                        style={data.size === 'l' ? { backgroundColor: '#9700fd', color: 'white' } : null}>L</button>
+                        <button
+                            onClick={() => { forceRender(); data.size = 's' }}
+                            style={data.size === 's' ? { backgroundColor: '#9700fd', color: 'white' } : null}>S</button>
+                        <button
+                            onClick={() => { forceRender(); data.size = 'm' }}
+                            style={data.size === 'm' ? { backgroundColor: '#9700fd', color: 'white' } : null}>M</button>
+                        <button
+                            onClick={() => { forceRender(); data.size = 'l' }}
+                            style={data.size === 'l' ? { backgroundColor: '#9700fd', color: 'white' } : null}>L</button>
                     </div>
                     <div className="header--animation">
                         <p>Animations</p>
@@ -132,7 +123,7 @@ const Settings = ({ toggle }) => {
                 <div className="body-add">
                     Tiles
                     <div className="container--add"><button onClick={() => { data.tiles.push(newTile); forceRender() }}>
-                    <div className="plus">+</div>Add Tile</button></div>
+                        <div className="plus">+</div>Add Tile</button></div>
                 </div>
                 <div className="body--tiles">
                     <p>SUBHEADER</p><p>HEADING</p><p>POSITIVE</p><p>BACKGROUND</p>
@@ -142,7 +133,7 @@ const Settings = ({ toggle }) => {
                 </div>
             </div>
             <div className="settings--footer">
-                <button onClick={() => { save(); toggle()}}>SAVE</button>
+                <button onClick={() => { save(); toggle() }}>SAVE</button>
             </div>
         </div>
     )
