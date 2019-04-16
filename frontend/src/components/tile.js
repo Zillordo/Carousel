@@ -27,9 +27,9 @@ const Options = ({ deleteOne, copyOne, options, optionsState, toggle }) => {
 
     return (
         <div className="options--container" onClick={toggle}>
-            <button className="duplicate" onClick={copyOne}><img src={squares} alt=''/>Duplicate</button>
-            <button className="moreOptions" onClick={options}><img src={plus} alt=''/>{optionsState ? "Less options" : "More options"}</button>
-            <button className="delete" onClick={deleteOne}><img src={trash} alt=''/> Delete</button>
+            <button className="duplicate" onClick={copyOne}><img src={squares} alt='' />Duplicate</button>
+            <button className="moreOptions" onClick={options}><img src={plus} alt='' />{optionsState ? "Less options" : "More options"}</button>
+            <button className="delete" onClick={deleteOne}><img src={trash} alt='' /> Delete</button>
         </div>
     )
 }
@@ -67,8 +67,8 @@ const Tile = ({ data, deleteTile, copyTile }) => {
     const [backToggle, setBackToggle] = useState();
     const [moreOptions, setMoreOptions] = useState();
 
-   
-    const check = {backgroundSize: '20px'};
+
+    const check = { backgroundSize: '20px' };
 
     useEffect(() => {
         getBase64(img, res => { data.background = res; forceRender() });
@@ -87,10 +87,10 @@ const Tile = ({ data, deleteTile, copyTile }) => {
                     <input type="text" value={head} onChange={e => { data.heading = e.target.value; setHead(e.target.value) }} />
                 </div>
                 <div className="positive">
-                    <button 
-                    onClick={() => { data.positive = !slider; setSlider(!slider) }} 
-                    style={slider ? { backgroundColor: '#dadada' } : { backgroundColor: '#9700fd' }}>
-                        <div className="slider" style={slider ? { transform:'translate(-100%,0)' } : { float: 'right' }}></div>
+                    <button
+                        onClick={() => { data.positive = !slider; setSlider(!slider) }}
+                        style={slider ? { backgroundColor: '#dadada' } : { backgroundColor: '#9700fd' }}>
+                        <div className="slider" style={slider ? { transform: 'translate(-100%,0)' } : { float: 'right' }}></div>
                     </button>
                 </div>
                 <div className="background">
