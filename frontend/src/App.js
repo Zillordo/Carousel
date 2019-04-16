@@ -8,9 +8,6 @@ import Settings from './components/settingsmodal';
 const Slider = ({ data, size }) => {
 
   return data.map(item => {
-
-
-
     const Link = () => {
       if (item.btnLink.length !== 0) {
         return (
@@ -78,10 +75,11 @@ const App = () => {
     return setInterval(() => {
       let element = document.getElementById('header-carousel');
       if (element.scrollLeft >= element.scrollWidth - element.clientWidth) {
-        element.scrollLeft = 0;
+        element.scroll({top: 0, left: 0});
       }
       else {
-        element.scrollLeft += element.clientWidth;
+        
+        element.scroll({top: 0, left: element.scrollLeft + element.clientWidth, behavior: 'smooth'});
       }
     }, data.time * 1000);
   }
