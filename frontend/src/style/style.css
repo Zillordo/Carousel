@@ -6,6 +6,8 @@
 .app .settingsbtn {
   background-color: #ffffff;
   border: 1px solid #dadada;
+  float: right;
+  margin: 10px;
 }
 
 .backdrop__zeindex {

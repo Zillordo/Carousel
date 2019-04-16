@@ -17,6 +17,8 @@ $montserrat: "Montserrat", sans-serif;
   .settingsbtn{
     background-color: $white;
     border: 1px solid $gray;
+    float: right;
+    margin: 10px;
   }
 }
 .backdrop__zeindex {
