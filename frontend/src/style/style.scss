@@ -541,6 +541,8 @@ body {
     background-size: cover;
     text-align: left;
     font-family: $playFair;
+    flex-grow: 0;
+    flex-shrink: 0;
     h1 {
       font-size: 40px;
       margin: 100px;

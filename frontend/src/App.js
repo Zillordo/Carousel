@@ -7,7 +7,7 @@ import Settings from './components/settingsmodal';
 
 const Slider = ({ data, size }) => {
 
-  return data.tiles.map(item => {
+  return data.map(item => {
 
 
 
@@ -57,7 +57,7 @@ const App = () => {
     }
   );
 
-  useEffect(() => {
+  const getData = () => {
     let dataGet = JSON.parse(localStorage.getItem('data'));
     if (dataGet === null) {
       dataGet = {
@@ -67,11 +67,29 @@ const App = () => {
         time: 2,
         tiles: []
       }
-
     }
     setData(dataGet);
-  }, [toggle]);
+  }
+  useEffect(() => {
+    getData();
+  }, []);
 
+  const timeOut = () => {
+    return setInterval(() => {
+      let element = document.getElementById('header-carousel');
+      if (element.scrollLeft >= element.scrollWidth - element.clientWidth) {
+        element.scrollLeft = 0;
+      }
+      else {
+        element.scrollLeft += element.clientWidth;
+      }
+    }, data.time * 1000);
+  }
+
+  useEffect(() => {
+    let interval = timeOut();
+    return () => clearInterval(interval);
+  }, [data.time]);
 
   const size = (size) => {
     if (size === 's') return { height: '360px' }
@@ -79,15 +97,16 @@ const App = () => {
     else if (size === 'l') return { height: '100vh' }
   }
 
+
   return (
     <>
       <div className='app'>
-        <div className="carousel--container">
-          <Slider data={data} size={size(data.size)} />
+        <div className="carousel--container" id="header-carousel">
+          <Slider data={data.tiles} size={size(data.size)} />
         </div>
         <button className='settingsbtn' onClick={() => setToggle(() => !toggle)}>Settings</button>
         {toggle && <Backdrop />}
-        {toggle && <Settings toggle={() => setToggle(!toggle)} />}
+        {toggle && <Settings toggle={() => { setToggle(!toggle); getData() }} />}
       </div>
     </>
   );
