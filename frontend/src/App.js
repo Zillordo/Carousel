@@ -48,7 +48,7 @@ const App = () => {
     {
       increment: 0,
       size: '',
-      animation: 'Fortine wheel',
+      animation: 'right',
       time: 2,
       tiles: []
     }
@@ -62,7 +62,7 @@ const App = () => {
       dataGet = {
         increment: 0,
         size: 'l',
-        animation: 'Fortine wheel',
+        animation: 'right',
         time: 2,
         tiles: []
       }
@@ -72,7 +72,6 @@ const App = () => {
     if (newData.length > 1) {
       if (newData !== null) {
         let item = newData[0];
-        console.log(item)
         let tile = {
           id: Math.random().toString(36).substr(2, 16),
           subHeader: item.subHeader,
@@ -121,14 +120,19 @@ const App = () => {
 
   const timeOut = () => {
     return setInterval(() => {
-      smoothCarouselRight();
+      if (data.animation === 'right') {
+        smoothCarouselRight();
+      }
+      else if (data.animation === 'left') {
+        smoothCarouselLeft();
+      }
     }, data.time * 1000);
   }
 
   useEffect(() => {
     let interval = timeOut();
     return () => clearInterval(interval);
-  }, [data.time]);
+  }, [data.time, data.animation]);
 
   const size = (size) => {
     if (size === 's') return { height: '360px' }

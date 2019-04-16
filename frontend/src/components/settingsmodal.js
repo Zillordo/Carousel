@@ -12,7 +12,7 @@ const Settings = ({ toggle }) => {
         {
             increment: 0,
             size: '',
-            animation: 'Fortine wheel',
+            animation: 'right',
             time: 2,
             tiles: []
         }
@@ -40,7 +40,7 @@ const Settings = ({ toggle }) => {
             dataGet = {
                 increment: 0,
                 size: '',
-                animation: 'Fortine wheel',
+                animation: 'left',
                 time: 2,
                 tiles: []
             }
@@ -117,8 +117,8 @@ const Settings = ({ toggle }) => {
                     <div className="header--animation">
                         <p>Animations</p>
                         <select value={data.animation} onChange={e => { forceRender(); data.animation = e.target.value }}>
-                            <option value="Fortine">Fortine wheel</option>
-                            <option value="Animation">Animation</option>
+                            <option value="left">Animate left</option>
+                            <option value="right">Animate right</option>
                         </select>
                         <select value={data.time} onChange={e => { forceRender(); data.time = e.target.value }}>
                             <option value={2}>Auto 2 sec</option>
