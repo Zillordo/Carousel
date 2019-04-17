@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import './style/style.css';
 
@@ -45,6 +45,7 @@ const Slider = ({ data, size }) => {
 
 const App = () => {
   const [toggle, setToggle] = useState(false);
+  const carouselEle = useRef();
   const [data, setData] = useState(
     {
       increment: 0,
@@ -83,7 +84,7 @@ const App = () => {
   }, []);
 
   const smoothCarouselLeft = () => {
-    let element = document.getElementById('header-carousel');
+    let element = carouselEle.current;
     if (element.scrollLeft === 0) {
       element.scroll({ top: 0, left: element.scrollWidth - element.clientWidth });
       element.scroll({ top: 0, left: element.scrollLeft - element.clientWidth, behavior: 'smooth' });
@@ -95,7 +96,7 @@ const App = () => {
 
 
   const smoothCarouselRight = () => {
-    let element = document.getElementById('header-carousel');
+    let element = carouselEle.current;
     if (element.scrollLeft >= element.scrollWidth - element.clientWidth) {
       element.scroll({ top: 0, left: 0 });
       element.scroll({ top: 0, left: element.scrollLeft + element.clientWidth, behavior: 'smooth' });
@@ -136,7 +137,7 @@ const App = () => {
   return (
     <>
       <div className='app'>
-        <div className="carousel--container" id="header-carousel">
+        <div className="carousel--container" id="header-carousel" ref={carouselEle}>
           <button className="moveRight" onClick={smoothCarouselRight} style={arrowPosition(data.size)}></button>
           <Slider data={data.tiles} size={size(data.size)} />
           <button className="moveLeft" onClick={smoothCarouselLeft} style={arrowPosition(data.size)}></button>

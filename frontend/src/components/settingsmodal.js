@@ -9,7 +9,8 @@ const Settings = ({ toggle }) => {
     let random = Math.random().toString(36).substr(2, 16);
 
     const [data, setData] = useState(
-        {   increment: 0,
+        {
+            increment: 0,
             size: '',
             animation: 'right',
             time: 2,
@@ -30,11 +31,17 @@ const Settings = ({ toggle }) => {
     };
 
     const save = () => {
-        try {
-            localStorage.setItem('data', JSON.stringify(data));
+        if (localStorage) {
+            try {
+                localStorage.setItem('data', JSON.stringify(data));
+                toggle();
+            }
+            catch (e) {
+                window.alert('Local storage is full. File u are uploading is too big');
+            }
         }
-        catch (e) {
-            window.alert('Local storage is full. File u are uploading is too big');
+        else {
+            window.alert('Local storage is not supported');
         }
     }
 
@@ -126,7 +133,7 @@ const Settings = ({ toggle }) => {
                 </div>
             </div>
             <div className="settings--footer">
-                <button onClick={() => { save(); toggle() }}>SAVE</button>
+                <button onClick={save}>SAVE</button>
             </div>
         </div>
     )
