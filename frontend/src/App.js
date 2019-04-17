@@ -127,14 +127,19 @@ const App = () => {
     else if (size === 'l') return { height: '100vh' }
   }
 
+  const arrowPosition = (size) => {
+    if (size === 's') return { top: '20%' }
+    else if (size === 'm') return { top: '30%' }
+    else if (size === 'l') return { top: '40%' }
+  }
 
   return (
     <>
       <div className='app'>
         <div className="carousel--container" id="header-carousel">
-          <button className="moveRight" onClick={smoothCarouselRight}></button>
+          <button className="moveRight" onClick={smoothCarouselRight} style={arrowPosition(data.size)}></button>
           <Slider data={data.tiles} size={size(data.size)} />
-          <button className="moveLeft" onClick={smoothCarouselLeft}></button>
+          <button className="moveLeft" onClick={smoothCarouselLeft} style={arrowPosition(data.size)}></button>
         </div>
         <button className='settingsbtn' onClick={() => setToggle(() => !toggle)}></button>
         {toggle && <Backdrop>

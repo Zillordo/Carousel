@@ -547,21 +547,19 @@ body {
 .moveRight,
 .moveLeft {
   position: fixed;
-  top: 30%;
   height: 75px;
   width: 28px;
   border: 0;
+  // top: 28%;
   background-color: rgba(255, 255, 255, 0);
   outline: none;
-  transition: all 100ms ease-in-out;
-  background-image: url("../pictures/arrow-right-thin@2x.png");
-  background-size: 25px;
-  background-repeat: no-repeat;
-  background-position: center;
+  transition: background-color 100ms ease-in-out;
+
   filter: invert(100%);
   border-radius: 2%;
 }
 .moveRight {
+  z-index: 1;
   right: 0;
 }
 .moveLeft {
@@ -580,6 +578,10 @@ body {
     .moveLeft,
     .moveRight {
       background-color: rgba(255, 255, 255, 0.4);
+      background-image: url("../pictures/arrow-right-thin@2x.png");
+      background-size: 25px;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
   .carousel {
