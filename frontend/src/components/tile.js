@@ -22,6 +22,35 @@ const getBase64 = (element, cb) => {
     }
 }
 
+const MoreOptions = ({ btnText, textOnChange, btnLink, linkOnChange, btnOption, optionOnChange }) => {
+    return (
+        <div className="moreOptions">
+            <div>
+                <label htmlFor="btn-text">btn Text</label>
+                <input className="btn-text" id="btn-text"
+                    value={btnText}
+                    onChange={textOnChange}>
+                </input>
+            </div>
+            <div>
+                <label htmlFor="btn-link">btn Link</label>
+                <input className="btn-link" id="btn-link"
+                    value={btnLink}
+                    onChange={linkOnChange}>
+                </input>
+            </div>
+            <div>
+                <select className="btn-select"
+                    value={btnOption}
+                    onChange={optionOnChange}>
+                    <option value="_blank">New tab</option>
+                    <option value="null">Same window</option>
+                </select>
+            </div>
+        </div>
+    )
+}
+
 
 const Options = ({ deleteOne, copyOne, options, optionsState, toggle }) => {
 
@@ -136,31 +165,14 @@ const Tile = ({ data, deleteTile, copyTile }) => {
             </div>
             {
                 moreOptions &&
-                <div className="moreOptions">
-                    <div>
-                        <label htmlFor="btn-text">btn Text</label>
-                        <input className="btn-text" id="btn-text"
-                            value={btnText}
-                            onChange={e => { setBtnText(e.target.value); data.btnText = e.target.value }}>
-                        </input>
-                    </div>
-                    <div>
-                        <label htmlFor="btn-link">btn Link</label>
-                        <input className="btn-link" id="btn-link"
-                            value={btnLink}
-                            onChange={e => { setBtnlink(e.target.value); data.btnLink = e.target.value }}>
-                        </input>
-                    </div>
-                    <div>
-                        <select className="btn-select"
-                            value={btnOption}
-                            onChange={e => { setBtnOption(e.target.value); data.btnOption = e.target.value }}>
-                            <option value="_blank">New tab</option>
-                            <option value="null">Same window</option>
-                        </select>
-                    </div>
-
-                </div>
+                <MoreOptions
+                    btnText={btnText}
+                    btnLink={btnLink}
+                    btnOption={btnOption}
+                    textOnChange={e => { setBtnText(e.target.value); data.btnText = e.target.value }}
+                    linkOnChange={e => { setBtnlink(e.target.value); data.btnLink = e.target.value }}
+                    optionOnChange={e => { setBtnOption(e.target.value); data.btnOption = e.target.value }}
+                />
             }
         </React.Fragment>
     )
