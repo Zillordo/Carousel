@@ -60,11 +60,11 @@ const App = () => {
     let dataGet = JSON.parse(localStorage.getItem('data'));
 
     if (dataGet === null) {
-      dataGet = {...data}
+      dataGet = { ...data }
     };
 
     let newData = dataGet.tiles.filter(item => item.positive === false);
-    
+
     if (newData.length > 1) {
       if (newData !== null) {
         let item = newData[0];
@@ -132,7 +132,9 @@ const App = () => {
     <>
       <div className='app'>
         <div className="carousel--container" id="header-carousel">
+          <button className="moveRight" onClick={smoothCarouselRight}></button>
           <Slider data={data.tiles} size={size(data.size)} />
+          <button className="moveLeft" onClick={smoothCarouselLeft}></button>
         </div>
         <button className='settingsbtn' onClick={() => setToggle(() => !toggle)}></button>
         {toggle && <Backdrop>

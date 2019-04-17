@@ -9,8 +9,7 @@ const Settings = ({ toggle }) => {
     let random = Math.random().toString(36).substr(2, 16);
 
     const [data, setData] = useState(
-        {
-            increment: 0,
+        {   increment: 0,
             size: '',
             animation: 'right',
             time: 2,
@@ -31,22 +30,16 @@ const Settings = ({ toggle }) => {
     };
 
     const save = () => {
-        localStorage.setItem('data', JSON.stringify(data));
+        try {
+            localStorage.setItem('data', JSON.stringify(data));
+        }
+        catch (e) {
+            window.alert('Local storage is full. File u are uploading is too big');
+        }
     }
 
     useEffect(() => {
         setData(JSON.parse(localStorage.getItem('data')));
-        // if (data === null) {
-        //     dataGet = {
-        //         increment: 0,
-        //         size: '',
-        //         animation: 'left',
-        //         time: 2,
-        //         tiles: []
-        //     }
-
-        // }
-        // setData(dataGet);
     }, []);
 
 

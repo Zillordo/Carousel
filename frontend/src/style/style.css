@@ -20,6 +20,7 @@
 }
 
 .backdrop__zeindex {
+  overflow: auto;
   z-index: 1;
   position: fixed;
   top: 0;
@@ -699,7 +700,37 @@ body {
   font-weight: 500;
 }
 
+.moveRight,
+.moveLeft {
+  position: fixed;
+  top: 30%;
+  height: 75px;
+  width: 28px;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0);
+  outline: none;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+  background-image: url("../pictures/arrow-right-thin@2x.png");
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+  border-radius: 2%;
+}
+
+.moveRight {
+  right: 0;
+}
+
+.moveLeft {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 .carousel--container {
+  position: relative;
   width: 100%;
   height: auto;
   display: -webkit-box;
@@ -711,6 +742,11 @@ body {
           flex-flow: row;
   overflow: hidden;
   background-color: black;
+}
+
+.carousel--container:hover .moveLeft,
+.carousel--container:hover .moveRight {
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .carousel--container .carousel {
