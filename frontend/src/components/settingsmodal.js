@@ -79,7 +79,7 @@ const Settings = ({ toggle }) => {
         }
         return data.tiles.map(item => {
             return (
-                <Tile key={data.id} data={item} deleteTile={() => deleteTile(item.id)} copyTile={() => copyTile(item.id)} />
+                <Tile key={item.id} data={item} deleteTile={() => deleteTile(item.id)} copyTile={() => copyTile(item.id)} />
             )
         }
         );
