@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Tile from './tile';
-import useForceRender from '../helpers/customHooks';
+
 
 
 const Settings = ({ toggle }) => {
 
-    const forceRender = useForceRender();
+
     let random = Math.random().toString(36).substr(2, 16);
 
     const [data, setData] = useState(
@@ -54,22 +54,24 @@ const Settings = ({ toggle }) => {
         let newTiles = data.tiles.filter(tileId => {
             return tileId.id !== id;
         });
-        forceRender();
+        let newData = { ...data }
+        newData.tiles = newTiles;
 
-        setData({ tiles: newTiles, increment: data.increment, size: data.size, animation: data.animation, time: data.time });
+        setData(newData);
     }
 
     const copyTile = (id) => {
-        let newData = data.tiles.filter(tileId => {
+        let copyTile = data.tiles.filter(tileId => {
             return tileId.id === id;
         });
 
-        let item = newData[0];
+        let item = copyTile[0];
 
+        let newData = { ...data };
         let tile = JSON.parse(JSON.stringify(item));
         tile.id = random;
-        data.tiles.push(tile);
-        forceRender();
+        newData.tiles.push(tile);
+        setData(newData);
     }
 
     const renderTiles = () => {
@@ -96,22 +98,22 @@ const Settings = ({ toggle }) => {
                     <div className="header--sizes">
                         <p>Size</p>
                         <button
-                            onClick={() => { forceRender(); data.size = 's' }}
+                            onClick={() => { let newData = { ...data }; newData.size = 's'; setData(newData) }}
                             style={data.size === 's' ? { backgroundColor: '#9700fd', color: 'white' } : null}>S</button>
                         <button
-                            onClick={() => { forceRender(); data.size = 'm' }}
+                            onClick={() => { let newData = { ...data }; newData.size = 'm'; setData(newData) }}
                             style={data.size === 'm' ? { backgroundColor: '#9700fd', color: 'white' } : null}>M</button>
                         <button
-                            onClick={() => { forceRender(); data.size = 'l' }}
+                            onClick={() => { let newData = { ...data }; newData.size = 'l'; setData(newData) }}
                             style={data.size === 'l' ? { backgroundColor: '#9700fd', color: 'white' } : null}>L</button>
                     </div>
                     <div className="header--animation">
                         <p>Animations</p>
-                        <select value={data.animation} onChange={e => { forceRender(); data.animation = e.target.value }}>
+                        <select value={data.animation} onChange={e => { let newData = { ...data }; newData.animation = e.target.value; setData(newData) }}>
                             <option value="left">Animate left</option>
                             <option value="right">Animate right</option>
                         </select>
-                        <select value={data.time} onChange={e => { forceRender(); data.time = e.target.value }}>
+                        <select value={data.time} onChange={e => { let newData = { ...data }; newData.time = e.target.value; setData(newData) }}>
                             <option value={2}>Auto 2 sec</option>
                             <option value={5}>Auto 5 sec</option>
                             <option value={10}>Auto 10 sec</option>
@@ -122,7 +124,7 @@ const Settings = ({ toggle }) => {
             <div className="settings--body">
                 <div className="body-add">
                     Tiles
-                    <div className="container--add"><button onClick={() => { data.tiles.push(newTile); forceRender() }}>
+                    <div className="container--add"><button onClick={() => { let newData = { ...data }; newData.tiles.push(newTile); setData(newData) }}>
                         <div className="plus">+</div>Add Tile</button></div>
                 </div>
                 <div className="body--tiles">
