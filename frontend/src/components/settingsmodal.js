@@ -10,7 +10,6 @@ const Settings = ({ toggle }) => {
 
     const [data, setData] = useState(
         {
-            increment: 0,
             size: '',
             animation: 'right',
             time: 2,
@@ -79,9 +78,8 @@ const Settings = ({ toggle }) => {
             return;
         }
         return data.tiles.map(item => {
-            data.increment++;
             return (
-                <Tile key={data.increment} data={item} deleteTile={() => deleteTile(item.id)} copyTile={() => copyTile(item.id)} />
+                <Tile key={data.id} data={item} deleteTile={() => deleteTile(item.id)} copyTile={() => copyTile(item.id)} />
             )
         }
         );
