@@ -105,6 +105,8 @@ const Tile = ({ data, deleteTile, copyTile }) => {
 
     data.color = color;
 
+    const cs = ['#9700fd', '#60cefe', '#49e5a5', '#ffffff', '#000000', '#808080', '#dadada', '#f5f5f5']
+
     return (
         <React.Fragment>
             <div className="tile">
@@ -134,14 +136,11 @@ const Tile = ({ data, deleteTile, copyTile }) => {
                             <div className="backdrop__zeindex" onClick={() => setBackToggle(!backToggle)} />
                             <Background getImage={e => setImg(e.target)} image={data.background}>
                                 <div className="colors">
-                                    <button style={color === '#9700fd' ? check : null} className="purple" onClick={() => { setColor('#9700fd') }}></button>
-                                    <button style={color === '#60cefe' ? check : null} className="blue" onClick={() => setColor('#60cefe')}></button>
-                                    <button style={color === '#49e5a5' ? check : null} className="green" onClick={() => setColor('#49e5a5')}></button>
-                                    <button style={color === '#ffffff' ? check : null} className="white" onClick={() => setColor('#ffffff')}></button>
-                                    <button style={color === '#000000' ? check : null} className="black" onClick={() => setColor('#000000')}></button>
-                                    <button style={color === '#808080' ? check : null} className="darkGray" onClick={() => setColor('#808080')}></button>
-                                    <button style={color === '#dadada' ? check : null} className="lightGray" onClick={() => setColor('#dadada')}></button>
-                                    <button style={color === '#f5f5f5' ? check : null} className="lightestGgrey" onClick={() => setColor('#f5f5f5')}></button>
+                                    {cs.map(c => {
+                                        return (
+                                            <button key={c} style={color === c ? { ...check, backgroundColor: c } : {backgroundColor: c}} onClick={() => setColor(c)} />
+                                        )
+                                    })}
                                 </div>
                             </Background>
                         </>
