@@ -89,6 +89,13 @@ const Tile = ({ data, deleteTile, copyTile }) => {
     const [btnLink, setBtnlink] = useState(data.btnLink);
     const [color, setColor] = useState(data.color);
     const [img, setImg] = useState(null);
+    data.subHeader = subHead;
+    data.heading = head;
+    data.positive = !slider;
+    data.btnText = btnText;
+    data.btnLink = btnLink;
+    data.btnOption = btnOption;
+    data.color = color;
 
     const forceRender = useForceRender();
 
@@ -103,23 +110,22 @@ const Tile = ({ data, deleteTile, copyTile }) => {
         getBase64(img, res => { data.background = res; forceRender() });
     }, [img])
 
-    data.color = color;
 
-    const cs = ['#9700fd', '#60cefe', '#49e5a5', '#ffffff', '#000000', '#808080', '#dadada', '#f5f5f5']
+    const clrs = ['#9700fd', '#60cefe', '#49e5a5', '#ffffff', '#000000', '#808080', '#dadada', '#f5f5f5']
 
     return (
         <React.Fragment>
             <div className="tile">
                 <div className="subheader">
                     <div className="dnd"></div>
-                    <input type="text" value={subHead} onChange={e => { data.subHeader = e.target.value; setSubeHead(e.target.value) }} />
+                    <input type="text" value={subHead} onChange={e => { setSubeHead(e.target.value) }} />
                 </div>
                 <div className="heading">
-                    <input type="text" value={head} onChange={e => { data.heading = e.target.value; setHead(e.target.value) }} />
+                    <input type="text" value={head} onChange={e => { setHead(e.target.value) }} />
                 </div>
                 <div className="positive">
                     <button
-                        onClick={() => { data.positive = !slider; setSlider(!slider) }}
+                        onClick={() => { setSlider(!slider) }}
                         style={slider ? { backgroundColor: '#dadada' } : { backgroundColor: '#9700fd' }}>
                         <div className="slider" style={slider ? { transform: 'translate(-100%,0)' } : { float: 'right' }}></div>
                     </button>
@@ -136,9 +142,9 @@ const Tile = ({ data, deleteTile, copyTile }) => {
                             <div className="backdrop__zeindex" onClick={() => setBackToggle(!backToggle)} />
                             <Background getImage={e => setImg(e.target)} image={data.background}>
                                 <div className="colors">
-                                    {cs.map(c => {
+                                    {clrs.map(c => {
                                         return (
-                                            <button key={c} style={color === c ? { ...check, backgroundColor: c } : {backgroundColor: c}} onClick={() => setColor(c)} />
+                                            <button key={c} style={color === c ? { ...check, backgroundColor: c } : { backgroundColor: c }} onClick={() => setColor(c)} />
                                         )
                                     })}
                                 </div>
@@ -168,9 +174,9 @@ const Tile = ({ data, deleteTile, copyTile }) => {
                     btnText={btnText}
                     btnLink={btnLink}
                     btnOption={btnOption}
-                    textOnChange={e => { setBtnText(e.target.value); data.btnText = e.target.value }}
-                    linkOnChange={e => { setBtnlink(e.target.value); data.btnLink = e.target.value }}
-                    optionOnChange={e => { setBtnOption(e.target.value); data.btnOption = e.target.value }}
+                    textOnChange={e => { setBtnText(e.target.value) }}
+                    linkOnChange={e => { setBtnlink(e.target.value) }}
+                    optionOnChange={e => { setBtnOption(e.target.value) }}
                 />
             }
         </React.Fragment>
