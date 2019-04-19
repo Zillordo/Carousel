@@ -91,7 +91,6 @@ const Tile = ({ data, deleteTile, copyTile }) => {
     const [img, setImg] = useState(null);
     data.subHeader = subHead;
     data.heading = head;
-    data.positive = !slider;
     data.btnText = btnText;
     data.btnLink = btnLink;
     data.btnOption = btnOption;
@@ -118,14 +117,14 @@ const Tile = ({ data, deleteTile, copyTile }) => {
             <div className="tile">
                 <div className="subheader">
                     <div className="dnd"></div>
-                    <input type="text" value={subHead} onChange={e => { setSubeHead(e.target.value) }} />
+                    <input type="text" value={subHead} onChange={e => setSubeHead(e.target.value)} />
                 </div>
                 <div className="heading">
-                    <input type="text" value={head} onChange={e => { setHead(e.target.value) }} />
+                    <input type="text" value={head} onChange={e => setHead(e.target.value)} />
                 </div>
                 <div className="positive">
                     <button
-                        onClick={() => { setSlider(!slider) }}
+                        onClick={() => { setSlider(!slider); data.positive = !slider }}
                         style={slider ? { backgroundColor: '#dadada' } : { backgroundColor: '#9700fd' }}>
                         <div className="slider" style={slider ? { transform: 'translate(-100%,0)' } : { float: 'right' }}></div>
                     </button>
@@ -174,9 +173,9 @@ const Tile = ({ data, deleteTile, copyTile }) => {
                     btnText={btnText}
                     btnLink={btnLink}
                     btnOption={btnOption}
-                    textOnChange={e => { setBtnText(e.target.value) }}
-                    linkOnChange={e => { setBtnlink(e.target.value) }}
-                    optionOnChange={e => { setBtnOption(e.target.value) }}
+                    textOnChange={e => setBtnText(e.target.value)}
+                    linkOnChange={e => setBtnlink(e.target.value)}
+                    optionOnChange={e => setBtnOption(e.target.value)}
                 />
             }
         </React.Fragment>
