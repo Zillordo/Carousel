@@ -49,7 +49,7 @@ const Settings = ({ toggle }) => {
         if (dataFromStorage === null) {
             dataFromStorage = {...data}
         }
-        console.log(dataFromStorage);
+        
         setData(dataFromStorage);
     }, []);
 

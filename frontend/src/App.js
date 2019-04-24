@@ -49,7 +49,7 @@ const App = () => {
   const [data, setData] = useState(
     {
       increment: 0,
-      size: '',
+      size: 'm',
       animation: 'right',
       time: 2,
       tiles: []
@@ -63,6 +63,9 @@ const App = () => {
     if (dataGet === null) {
       dataGet = { ...data }
     };
+    if (dataGet.size === '') {
+      dataGet.size = 'm';
+    }
 
     let newData = dataGet.tiles.filter(item => item.positive === false);
 
