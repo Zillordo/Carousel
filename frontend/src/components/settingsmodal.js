@@ -10,7 +10,7 @@ const Settings = ({ toggle }) => {
 
     const [data, setData] = useState(
         {
-            size: '',
+            size: 's',
             animation: 'right',
             time: 2,
             tiles: []
@@ -45,7 +45,11 @@ const Settings = ({ toggle }) => {
     }
 
     useEffect(() => {
-        setData(JSON.parse(localStorage.getItem('data')));
+        let dataFromStorage = JSON.parse(localStorage.getItem('data'));
+        if (dataFromStorage === null) {
+            dataFromStorage = {...data}
+        }
+        setData(data);
     }, []);
 
 
