@@ -75,7 +75,6 @@ const App = () => {
       };
     };
 
-
     setData(dataGet);
   }
 
@@ -83,11 +82,15 @@ const App = () => {
     getData();
   }, []);
 
+
   const smoothCarouselLeft = () => {
     let element = carouselEle.current;
+
+
     if (element.scrollLeft === 0) {
       element.scroll({ top: 0, left: element.scrollWidth - element.clientWidth });
       element.scroll({ top: 0, left: element.scrollLeft - element.clientWidth, behavior: 'smooth' });
+
     }
     else {
       element.scroll({ top: 0, left: element.scrollLeft - element.clientWidth, behavior: 'smooth' });
@@ -97,6 +100,7 @@ const App = () => {
 
   const smoothCarouselRight = () => {
     let element = carouselEle.current;
+
     if (element.scrollLeft >= element.scrollWidth - element.clientWidth) {
       element.scroll({ top: 0, left: 0 });
       element.scroll({ top: 0, left: element.scrollLeft + element.clientWidth, behavior: 'smooth' });

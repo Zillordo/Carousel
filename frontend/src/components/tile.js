@@ -81,26 +81,26 @@ const Background = ({ image, getImage, ...props }) => {
 
 const Tile = ({ data, deleteTile, copyTile }) => {
 
-    const [subHead, setSubeHead] = useState(data.subHeader);
-    const [head, setHead] = useState(data.heading);
-    const [slider, setSlider] = useState(data.positive);
-    const [btnText, setBtnText] = useState(data.btnText);
     const [btnOption, setBtnOption] = useState(data.btnOption);
+    const [subHead, setSubeHead] = useState(data.subHeader);
+    const [btnText, setBtnText] = useState(data.btnText);
     const [btnLink, setBtnlink] = useState(data.btnLink);
+    const [slider, setSlider] = useState(data.positive);
     const [color, setColor] = useState(data.color);
+    const [head, setHead] = useState(data.heading);
     const [img, setImg] = useState(null);
+    data.btnOption = btnOption;
     data.subHeader = subHead;
-    data.heading = head;
     data.btnText = btnText;
     data.btnLink = btnLink;
-    data.btnOption = btnOption;
+    data.heading = head;
     data.color = color;
 
     const forceRender = useForceRender();
 
     const [optionsToggle, setOptionsToggle] = useState();
-    const [backToggle, setBackToggle] = useState();
     const [moreOptions, setMoreOptions] = useState();
+    const [backToggle, setBackToggle] = useState();
 
 
     const check = { backgroundSize: '20px' };
