@@ -10,7 +10,7 @@ const Settings = ({ toggle }) => {
 
     const [data, setData] = useState(
         {
-            size: 's',
+            size: '',
             animation: 'right',
             time: 2,
             tiles: []
@@ -49,7 +49,8 @@ const Settings = ({ toggle }) => {
         if (dataFromStorage === null) {
             dataFromStorage = {...data}
         }
-        setData(data);
+        console.log(dataFromStorage);
+        setData(dataFromStorage);
     }, []);
 
 
